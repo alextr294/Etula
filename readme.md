@@ -103,4 +103,12 @@ Il ne nous reste maintenant plus qu’à allumer le serveur:
 php artisan serve
 ```
 
+### Régénérer les assets (public)
+
+Ouvrez un autre cmd (si le serveur est lancé) et tapez la commande suivante, toujours à la racine du projet:
+```
+npm run dev
+```
+Cela va regénérer les fichiers css et js accessibles aux utilisateurs (public) à partir du dossier de développement frontend (resources).
+
 Et voilà, le tour est joué ! Vous devriez avoir accès au projet. Maintenant, lisez bien les commentaires dans le code ! Ils vous aideront à mieux comprendre.
