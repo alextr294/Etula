@@ -44,7 +44,7 @@ Les dépendances seront installées lors de la configuration du projet, et sont 
 
 ### npm, composer, .env
 
-Pour commencer, notre projet a des « dépendances ». Elles doivent être chargées au travers des gestionnaires dont le projet a besoin (à savoir npm pour nodejs et composer pour PHP). Nous devons ainsi lancer les commandes suivantes:
+Pour commencer, notre projet a des « dépendances ». Elles doivent être chargées au travers des gestionnaires dont le projet a besoin (à savoir [npm pour nodejs](https://www.npmjs.com/get-npm) et [composer pour PHP](https://getcomposer.org/download/)). Nous devons ainsi lancer les commandes suivantes:
 
 ```
 npm install
