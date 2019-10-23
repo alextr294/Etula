@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Resource extends Model
+class LessonToken extends Model
 {
    /**
     * Indicates if the model should be timestamped.
@@ -19,6 +20,15 @@ class Resource extends Model
     * @var array
     */
    protected $fillable = [
-      'name', 'type'
+      'token'
    ];
+
+    /**
+     * Get the Lesson which owns this LessonToken
+     *
+     * @return BelongsTo
+     */
+    public function lesson() {
+        return $this->belongsTo('App\Lesson');
+    }
 }
