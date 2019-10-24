@@ -22,7 +22,7 @@ class Lesson extends Model
     * @var array
     */
    protected $fillable = [
-      'name', 'type', 'begin_at', 'end_at', 'longitude', 'latitude'
+      'name', 'type', 'begin_at', 'end_at', 'longitude', 'latitude', 'unit_id', 'teacher_id'
    ];
 
     /**
