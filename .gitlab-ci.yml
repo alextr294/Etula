@@ -33,7 +33,7 @@ before_script:
   # Install dependencies
   # removed : libsqlite3-dev 
   - apt-get install apt-utils -yqq
-  - apt-get install nodejs curl libmemcached-dev libpq-dev libssl-dev libmcrypt-dev php7.2-mbstring -yqq
+  - apt-get install nodejs curl libmemcached-dev libpq-dev libssl-dev libmcrypt-dev -yqq
   # apt-get install git nodejs libtool libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
   # Install php extensions
   # intl gd xml zip bz2 opcache pdo_mysql curl json 
