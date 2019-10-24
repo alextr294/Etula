@@ -17,6 +17,11 @@ class CreateTeachingUnitsTable extends Migration
             $table->increments('id');
             $table->string('name');
         });
+
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->unsignedInteger('unit_id');
+            $table->foreign('unit_id')->references('id')->on('teaching_units')->onDelete('cascade');
+        });
     }
 
     /**
@@ -26,6 +31,10 @@ class CreateTeachingUnitsTable extends Migration
      */
     public function down()
     {
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->dropForeign('lessons_unit_id_foreign');
+            $table->dropColumn('unit_id');
+        });
         Schema::dropIfExists('teaching_units');
     }
 }

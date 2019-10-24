@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TeachingUnit extends Model
 {
@@ -21,4 +23,23 @@ class TeachingUnit extends Model
    protected $fillable = [
       'name'
    ];
+
+    /**
+     * Get Lessons registered on this TeachingUnit
+     *
+     * @return HasMany
+     */
+    public function lessons()
+    {
+        return $this->hasMany('App\Lesson', 'unit_id');
+    }
+
+    /**
+     * Get the Group available for this Lesson
+     *
+     * @return BelongsTo
+     */
+    public function group() {
+        return $this->belongsTo('App\Group');
+    }
 }
