@@ -24,6 +24,9 @@ cache:
 # This is a basic example for a gem or script which doesn't use
 # services such as redis or postgres
 before_script:
+  - uname -a
+  - apt install screenfetch
+  - screenfetch
   # Update packages
   - apt-get update -yqq
   # Prep for Node
@@ -37,11 +40,11 @@ before_script:
   # apt-get install git nodejs libtool libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
   # Install php extensions
   # intl gd xml zip bz2 opcache pdo_mysql curl json 
-  - pecl install mbstring && docker-php-ext-install mbstring
+  - docker-php-ext-install mbstring
   - docker-php-ext-install pdo_mysql
-  - pecl install zip && docker-php-ext-install zip
+  - docker-php-ext-install zip
   # Install & enable Xdebug for code coverage reports
-  - pecl install xdebug && docker-php-ext-enable xdebug
+  - docker-php-ext-enable xdebug
   # Install Composer and project dependencies.
   - curl -sS https://getcomposer.org/installer | php
   - php composer.phar install
