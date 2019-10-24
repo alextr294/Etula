@@ -44,7 +44,7 @@ Les dépendances seront installées lors de la configuration du projet, et sont 
 
 ### npm, composer, .env
 
-Pour commencer, notre projet a des « dépendances ». Elles doivent être chargées au travers des gestionnaires dont le projet a besoin (à savoir npm pour nodejs et composer pour PHP). Nous devons ainsi lancer les commandes suivantes:
+Pour commencer, notre projet a des « dépendances ». Elles doivent être chargées au travers des gestionnaires dont le projet a besoin (à savoir [npm pour nodejs](https://www.npmjs.com/get-npm) et [composer pour PHP](https://getcomposer.org/download/)). Nous devons ainsi lancer les commandes suivantes:
 
 ```
 npm install
@@ -102,5 +102,13 @@ Il ne nous reste maintenant plus qu’à allumer le serveur:
 ```
 php artisan serve
 ```
+
+### Régénérer les assets (public)
+
+Ouvrez un autre cmd (si le serveur est lancé) et tapez la commande suivante, toujours à la racine du projet:
+```
+npm run dev
+```
+Cela va regénérer les fichiers css et js accessibles aux utilisateurs (public) à partir du dossier de développement frontend (resources).
 
 Et voilà, le tour est joué ! Vous devriez avoir accès au projet. Maintenant, lisez bien les commentaires dans le code ! Ils vous aideront à mieux comprendre.
