@@ -42,7 +42,7 @@ before_script:
   - docker-php-ext-install pdo_mysql
   - docker-php-ext-install zip
   # Install & enable Xdebug for code coverage reports
-  - docker-php-ext-enable xdebug
+  - pecl install xdebug && docker-php-ext-enable xdebug
   # Install Composer and project dependencies.
   - curl -sS https://getcomposer.org/installer | php
   - php composer.phar install
