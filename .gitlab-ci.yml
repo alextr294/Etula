@@ -33,7 +33,7 @@ before_script:
   # Install dependencies
   - apt-get install apt-utils -yqq
    # apt-get install git nodejs libmemcached-dev libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
-  - apt install git zip unzip cat -yqq
+  - apt install git zip unzip -yqq
   - docker-php-ext-enable xdebug
   
   # Install Composer and project dependencies.
