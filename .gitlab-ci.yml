@@ -9,9 +9,9 @@ image: php:7.2-fpm
 services:
   - mysql:latest
 
-# variables:
-#  MYSQL_DATABASE: scanetu
-#  MYSQL_ROOT_PASSWORD: secret
+variables:
+  MYSQL_DATABASE: scanetu
+  MYSQL_ROOT_PASSWORD: secret
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
