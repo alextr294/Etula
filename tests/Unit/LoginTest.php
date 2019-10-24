@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use http\Client\Curl\User;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -13,10 +13,12 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function a_student_must_be_redirected_to_the_right_page()
+    public function test_a_student_must_be_redirected_to_the_right_page()
     {
-        $user = factory(User::class)->create();
-        $response = $this->get
+        $user = factory(User::class)->create(["type" => "student"]);
+
+        $response = $this->post('/login', $user);
+        $response->assertRedirect("/student");
     }
 
     public function a_teacher_must_be_redirected_to_the_right_page()
