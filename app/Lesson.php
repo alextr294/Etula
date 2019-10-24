@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Lesson extends Model
@@ -49,5 +50,15 @@ class Lesson extends Model
      */
     public function token() {
         return $this->hasOne('App\LessonToken');
+    }
+
+    /**
+     * Get Students that confirmed their presence in this Lesson
+     *
+     * @return BelongsToMany
+     */
+    public function presentStudents()
+    {
+        return $this->belongsToMany('App\Student');
     }
 }

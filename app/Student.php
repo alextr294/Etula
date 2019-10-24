@@ -23,4 +23,14 @@ class Student extends Model
     {
         return $this->belongsToMany('App\Group');
     }
+
+    /**
+     * Get Lessons in which the student confirmed to be there
+     *
+     * @return BelongsToMany
+     */
+    public function presentLessons()
+    {
+        return $this->belongsToMany('App\Lesson');
+    }
 }
