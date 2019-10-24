@@ -16,6 +16,15 @@ class Group extends Model
     public $timestamps = false;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name'
+    ];
+
+    /**
      * Get Students from this Group
      *
      * @return BelongsToMany
