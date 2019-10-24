@@ -16,7 +16,7 @@ variables:
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
-  group: sharedcache
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - vendor/
     - node_modules/
