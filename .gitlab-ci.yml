@@ -17,6 +17,7 @@ variables:
   MYSQL_ROOT_PASSWORD: secret
 
 cache:
+  key: "$CI_JOB_NAME"
   paths:
     - vendor/
     - node_modules/
@@ -32,15 +33,8 @@ before_script:
   # Install dependencies
   - apt-get install apt-utils -yqq
    # apt-get install git nodejs libmemcached-dev libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
-  - apt install git zip unzip -yqq
-  # Install php extensions
-  # intl gd xml zip bz2 opcache pdo_mysql curl json 
-  #- docker-php-ext-install mbstring
-  #- docker-php-ext-install pdo_mysql
-  #- docker-php-ext-install zip
-  
-  # Install & enable Xdebug for code coverage reports
-  #- docker-php-ext-enable xdebug
+  - apt install git zip unzip cat -yqq
+  - docker-php-ext-enable xdebug
   
   # Install Composer and project dependencies.
   - curl -sS https://getcomposer.org/installer | php
@@ -52,9 +46,12 @@ before_script:
   - php artisan key:generate
   - php artisan config:cache
   # Run database migrations.
+  - cat .env
+  - mysql -u root
   - php artisan migrate
   # Run database seed
   - php artisan db:seed
+  
 
 test:
   script:
