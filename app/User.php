@@ -68,4 +68,12 @@ class User extends Authenticatable
                 return $q->with('adminAccess');
             });
     }
+
+    /**
+     * Check if user is admin
+     *
+     */
+    public function isAdmin() {
+        return ($this->type=="admin");
+    }
 }
