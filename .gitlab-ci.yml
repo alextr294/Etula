@@ -10,11 +10,12 @@ services:
   - mysql:latest
 
 variables:
+  DB_DATABASE: scanetu
+  ROOT_PASSWORD: secret
   MYSQL_DATABASE: scanetu
   MYSQL_ROOT_PASSWORD: secret
 
 cache:
-  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - vendor/
     - node_modules/
