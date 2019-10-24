@@ -2,6 +2,7 @@
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/php
 image: php:7.2-fpm
+image: laraveldev/php:fpm
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
@@ -22,14 +23,17 @@ cache:
 
 
 before_script:
+  - mv /etc/apt/sources.list /etc/apt/sources.list.test
+  - echo 'deb http://ftp.fr.debian.org/debian/ buster main contrib non-free' >> /etc/apt/sources.list
+  - echo 'deb-src http://ftp.fr.debian.org/debian/ buster main contrib non-free' >> /etc/apt/sources.list
   
   # Update packages
   - apt-get update -yqq
   
   # Install dependencies
   - apt-get install apt-utils -yqq
-  - apt-get install git nodejs libmemcached-dev libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
-  
+   # apt-get install git nodejs libmemcached-dev libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
+  - apt install git zip unzip
   # Install php extensions
   # intl gd xml zip bz2 opcache pdo_mysql curl json 
   - docker-php-ext-install mbstring
