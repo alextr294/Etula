@@ -11,8 +11,6 @@ services:
   - mysql:latest
 
 variables:
-  DB_DATABASE: scanetu
-  ROOT_PASSWORD: secret
   MYSQL_DATABASE: scanetu
   MYSQL_ROOT_PASSWORD: secret
 
@@ -47,7 +45,6 @@ before_script:
   - php artisan config:cache
   # Run database migrations.
   - cat .env
-  - mysql -u root
   - php artisan migrate
   # Run database seed
   - php artisan db:seed
