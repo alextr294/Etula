@@ -16,6 +16,7 @@ variables:
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
+  group: sharedcache
   paths:
     - vendor/
     - node_modules/
@@ -32,13 +33,15 @@ before_script:
   # Install dependencies
   # removed : libsqlite3-dev 
   - apt-get install apt-utils -yqq
-  - apt-get install git nodejs libtool libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
+  - apt-get install nodejs curl libmemcached-dev libpq-dev libjpeg-dev libpng12-dev libfreetype-dev libssl-dev libmcrypt-dev
+  # apt-get install git nodejs libtool libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev -yqq
   # Install php extensions
-  # intl gd xml zip bz2 opcache
-  - docker-php-ext-install mbstring pdo_mysql curl json 
+  # intl gd xml zip bz2 opcache pdo_mysql curl json 
+  - docker-php-ext-install mbstring
+  - docker-php-ext-install pdo_mysql
+  - pecl install zip && docker-php-ext-install zip
   # Install & enable Xdebug for code coverage reports
-  - pecl install xdebug
-  - docker-php-ext-enable xdebug
+  - pecl install xdebug && docker-php-ext-enable xdebug
   # Install Composer and project dependencies.
   - curl -sS https://getcomposer.org/installer | php
   - php composer.phar install
