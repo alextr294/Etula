@@ -14,7 +14,7 @@ variables:
 services:
   - mysql:
     - mysql:latest
-    - entrypoint: ["echo 'CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE'", ">", "docker-entrypoint-initdb.d"];
+    - mysqld --default-authentication-plugin=mysql_native_password
   
 cache:
   key: "$CI_JOB_NAME"
