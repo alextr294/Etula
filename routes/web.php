@@ -19,3 +19,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/teacher', function () {
     return view('teacher');
 });
+
+Route::get('lesson', 'LessonController@getForm');
+Route::post('lesson', 'LessonController@postForm');
