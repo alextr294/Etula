@@ -12,9 +12,7 @@ variables:
 # Only needed when using a docker container to run your tests in.
 # Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
 services:
-  - mysql:
-    - mysql:latest
-    - mysqld --default-authentication-plugin=mysql_native_password
+  - mysql:5.7
   
 cache:
   key: "$CI_JOB_NAME"
