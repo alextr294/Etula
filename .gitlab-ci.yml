@@ -14,12 +14,6 @@ variables:
   MYSQL_DATABASE: scanetu
   MYSQL_ROOT_PASSWORD: secret
   
-connect:
-  image: mysql
-  script:
-  - echo "SELECT 'OK';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" | update mysql.user set authentication_string=PASSWORD("$MYSQL_ROOT_PASSWORD") where User='root';
-
-
 cache:
   key: "$CI_JOB_NAME"
   paths:
