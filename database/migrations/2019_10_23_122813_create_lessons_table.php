@@ -23,8 +23,6 @@ class CreateLessonsTable extends Migration
 
             $table->timestamp('begin_at')->nullable();
             $table->timestamp('end_at')->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
-            $table->decimal('latitude', 10, 7)->nullable();
         });
     }
 

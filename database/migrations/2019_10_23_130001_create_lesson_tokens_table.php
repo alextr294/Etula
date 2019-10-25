@@ -19,6 +19,8 @@ class CreateLessonTokensTable extends Migration
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
 
             $table->string('token', 13)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+            $table->decimal('latitude', 10, 7)->nullable();
         });
     }
 
