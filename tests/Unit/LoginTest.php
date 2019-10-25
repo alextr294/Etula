@@ -17,7 +17,10 @@ class LoginTest extends TestCase
      */
     public function test_a_student_must_be_redirected_to_the_right_page()
     {
-        $user = factory(User::class)->create(["type" => "student"]);
+        $user = factory(User::class)->create([
+            "type" => "student",
+            "password" => "bite"
+        ]);
 
         $response = $this->post('/login', [$user]);
         $response->assertRedirect("/student");
