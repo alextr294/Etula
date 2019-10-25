@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -17,7 +19,7 @@ class LoginTest extends TestCase
     {
         $user = factory(User::class)->create(["type" => "student"]);
 
-        $response = $this->post('/login', $user);
+        $response = $this->post('/login', [$user]);
         $response->assertRedirect("/student");
     }
 
