@@ -11,11 +11,26 @@
 |
 */
 
+/**
+ * Auto-generated authentication routes.
+ */
 Auth::routes();
 
+/**
+ * Homepage.
+ */
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
+/**
+ * Admin Only
+ */
+    //==Teaching Unit==
+    Route::resource('courses','TeachingUnitController');
+
+/**
+ * Teacher.
+ */
 Route::get('/teacher', function () {
     return view('teacher');
 });
