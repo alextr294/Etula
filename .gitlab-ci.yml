@@ -13,7 +13,7 @@ variables:
 # Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
 services:
   - mysql:latest
-  - entrypoint: ["echo 'CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE'", ">", "docker-entrypoint-initdb.d"];
+    - entrypoint: ["echo 'CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE'", ">", "docker-entrypoint-initdb.d"];
   
 cache:
   key: "$CI_JOB_NAME"
