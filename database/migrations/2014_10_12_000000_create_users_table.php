@@ -47,21 +47,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->dropForeign('admins_user_id_foreign');
-            $table->dropPrimary('admins_user_id_primary');
-            $table->dropColumn('user_id');
-        });
-        Schema::table('students', function (Blueprint $table) {
-            $table->dropForeign('students_user_id_foreign');
-            $table->dropPrimary('students_user_id_primary');
-            $table->dropColumn('user_id');
-        });
-        Schema::table('teachers', function (Blueprint $table) {
-            $table->dropForeign('teachers_user_id_foreign');
-            $table->dropPrimary('teachers_user_id_primary');
-            $table->dropColumn('user_id');
-        });
         Schema::dropIfExists('admins');
         Schema::dropIfExists('students');
         Schema::dropIfExists('teachers');
