@@ -32,8 +32,6 @@ class LessonController extends Controller
         $lesson->begin_at= $request->input('begin_at');
         $lesson->end_at= $request->input('end_at');
         $lesson->teacher_id= Auth::user()->id;
-        $lesson->longitude= 0;
-        $lesson->latitude= 0;
 
         $lesson->save();
 
