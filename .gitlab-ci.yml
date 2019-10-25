@@ -17,7 +17,7 @@ variables:
 connect:
   image: mysql
   script:
-  - echo "SELECT 'OK';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host=mysql "$MYSQL_DATABASE" | update mysql.user set authentication_string=PASSWORD("$MYSQL_ROOT_PASSWORD") where User='root';
+  - echo "SELECT 'OK';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" | update mysql.user set authentication_string=PASSWORD("$MYSQL_ROOT_PASSWORD") where User='root';
 
 
 cache:
