@@ -12,11 +12,11 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
+    /*
     public function testBasicTest()
     {
         /*$response = $this->get('/');
 
-        $response->assertStatus(200);*/
-	$this->assertContains(4, [1, 4, 3]);
     }
+    */
 }
