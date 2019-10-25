@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,9 +14,6 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        /*$response = $this->get('/');
-
-        $response->assertStatus(200);*/
-	$this->assertContains(4, [1, 4, 3]);
+        $this->assertTrue(true);
     }
 }
