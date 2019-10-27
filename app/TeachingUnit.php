@@ -42,4 +42,15 @@ class TeachingUnit extends Model
     public function group() {
         return $this->belongsTo('App\Group');
     }
+
+    /**
+     * Create new record.
+     */
+    public function create($data) {
+        $new = new TeachingUnit;
+        $new->name = $data['name'];
+        $new->group_id = $data['group_id'];
+        $new->save();
+    }
+
 }
