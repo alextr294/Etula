@@ -4,7 +4,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-body">
-                    <form action="{!! url('lesson') !!}" method="POST">
+                    <form action="{!! url('lesson_create') !!}" method="POST">
 
                         {{ csrf_field() }}
 

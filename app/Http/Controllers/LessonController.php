@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
-    public function getForm(){
+    public function create(){
         $units = TeachingUnit::all();
-        return view('lesson',compact('units'));
+        return view('lesson_create',compact('units'));
     }
+
 
     public function postForm(Request $request){
 
@@ -35,7 +36,8 @@ class LessonController extends Controller
 
         $lesson->save();
 
-        return view('teacher');
+        $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();;
+        return view('teacher',compact("lessons"));
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Lesson;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -30,7 +31,8 @@ class HomeController extends Controller
             return view('student');
         }
         elseif($user_type=="teacher"){
-            return view('teacher');
+            $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();;
+            return view('teacher',compact("lessons"));
         }
         elseif($user_type=="admin"){
             return view('admin');
