@@ -11646,3 +11646,146 @@ a.text-dark:focus {
   }
 }
 
+.radio-btn {
+  position: relative;
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.radio-btn label {
+  display: block;
+  background: white;
+  color: #444;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: 2px solid #fedeaa;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.radio-btn label:after,
+.radio-btn label:before {
+  content: "";
+  position: absolute;
+  right: 11px;
+  top: 11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  background: #fdc15e;
+}
+
+.radio-btn label:before {
+  background: transparent;
+  z-index: 2;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: 13px;
+  background-position: center;
+  width: 0;
+  height: 0;
+}
+
+.radio-btn input[type="radio"] {
+  display: none;
+  position: absolute;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.radio-btn input[type="radio"]:checked + label {
+  background: #fdc15e;
+  -webkit-animation-name: blink;
+          animation-name: blink;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  border-color: #fcae2c;
+}
+
+.radio-btn input[type="radio"]:checked + label:after {
+  background: #fcae2c;
+}
+
+.radio-btn input[type="radio"]:checked + label:before {
+  width: 5vw;
+  height: 5vw;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    background-color: #fdc15e;
+  }
+
+  10% {
+    background-color: #fdc15e;
+  }
+
+  11% {
+    background-color: #fedeaa;
+  }
+
+  29% {
+    background-color: #fedeaa;
+  }
+
+  45% {
+    background-color: #fdc15e;
+  }
+
+  50% {
+    background-color: #fedeaa;
+  }
+
+  45% {
+    background-color: #fdc15e;
+  }
+
+  50% {
+    background-color: #fedeaa;
+  }
+
+  100% {
+    background-color: #fdc15e;
+  }
+}
+
+@keyframes blink {
+  0% {
+    background-color: #fdc15e;
+  }
+
+  10% {
+    background-color: #fdc15e;
+  }
+
+  11% {
+    background-color: #fedeaa;
+  }
+
+  29% {
+    background-color: #fedeaa;
+  }
+
+  45% {
+    background-color: #fdc15e;
+  }
+
+  50% {
+    background-color: #fedeaa;
+  }
+
+  45% {
+    background-color: #fdc15e;
+  }
+
+  50% {
+    background-color: #fedeaa;
+  }
+
+  100% {
+    background-color: #fdc15e;
+  }
+}
+

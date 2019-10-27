@@ -20,7 +20,7 @@ class LessonToken extends Model
     * @var array
     */
    protected $fillable = [
-      'token'
+      'token', 'longitude', 'latitude'
    ];
 
     /**

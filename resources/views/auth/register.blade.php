@@ -10,6 +10,7 @@
                     <form role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
+                        {{-- NAME INPUT --}}
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">Name</label>
 
@@ -29,6 +30,7 @@
                             </div>
                         </div>
 
+                        {{-- EMAIL INPUT --}}
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">E-Mail Address</label>
 
@@ -49,6 +51,7 @@
                             </div>
                         </div>
 
+                        {{-- PASSWORD INPUT --}}
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">Password</label>
 
@@ -67,6 +70,7 @@
                             </div>
                         </div>
 
+                        {{-- CONFIRM PASSWORD --}}
                         <div class="form-group row">
                             <label class="col-lg-4 col-form-label text-lg-right">Confirm Password</label>
 
@@ -85,6 +89,29 @@
                             </div>
                         </div>
 
+                        {{-- USER TYPE INPUT --}}
+                        <div class="form-group row text-center">
+                            {{-- Admin Select Button --}}
+                            <div class="col-md-4 radio-btn">
+                                <input type="radio" id="admin-button"
+                                       name="type" value="admin" checked />
+                                <label for="admin-button">Admin</label>
+                            </div>
+                            {{-- Teacher Select Button --}}
+                            <div class="col-md-4 radio-btn">
+                                <input type="radio" id="teacher-button"
+                                       name="type" value="teacher" checked />
+                                <label for="teacher-button">Teacher</label>
+                            </div>
+                            {{-- Student Select Button --}}
+                            <div class="col-md-4 radio-btn">
+                                <input type="radio" id="student-button"
+                                       name="type" value="student" checked />
+                                <label for="student-button">Student</label>
+                            </div>
+                        </div>
+
+                        {{-- SUBMIT BUTTON --}}
                         <div class="form-group row">
                             <div class="col-lg-6 offset-lg-4">
                                 <button type="submit" class="btn btn-primary">
@@ -92,6 +119,7 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
