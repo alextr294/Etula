@@ -35,9 +35,7 @@ class LessonController extends Controller
         $lesson->teacher_id= Auth::user()->id;
 
         $lesson->save();
-
-        $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();;
-        return view('teacher',compact("lessons"));
+        return redirect()->route('home');
     }
 
 }

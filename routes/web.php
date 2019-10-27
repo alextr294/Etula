@@ -38,7 +38,7 @@ Route::get('/teacher', function () {
 Route::get('lesson_create', 'LessonController@create');
 Route::post('lesson_create', 'LessonController@postForm');
 
-Route::get('token_create/{id}', [
+Route::post('token_create/{id}', [
 
     'as' => 'token_create',
 

@@ -19,14 +19,15 @@
     $lessonToken = App\LessonToken::where('lesson_id', $lesson->id)->first();
     @endphp
     <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link active">{{$lesson->name}}
-                @if($lessonToken==null)
-                <a href="{{ route('token_create',$lesson->id) }}"> ( + )</a>
-                @else
-                <a>  : {{$lessonToken->token}}</a>
-                @endif
-            </a>
+        <li class="nav-item">{{$lesson->name}}
+            @if($lessonToken==null)
+                <form action="{{ route('token_create',$lesson->id) }}" method="POST">
+                    {{ csrf_field() }}
+                    <button type="submit">( + )</button>
+                </form>
+            @else
+                <span>  : {{$lessonToken->token}}</span>
+            @endif
         </li>
     </ul>
     @endforeach

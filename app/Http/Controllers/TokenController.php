@@ -27,11 +27,9 @@ class TokenController extends Controller
 
         $token->token = $code_aleatoire;
         $token->longitude = 0;
-        $token->latitude= 0;
+        $token->latitude = 0;
 
         $token->save();
-
-        $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();;
-        return view('teacher',compact("lessons"));
+        return redirect()->route('home');
     }
 }
