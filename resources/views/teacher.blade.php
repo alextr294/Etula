@@ -13,19 +13,31 @@
 <body>
     <h1>Enseignants</h1>
 
-    <h2>Ressources actives</h2>
+    <h2>Séances</h2>
+    @foreach($lessons as $lesson)
+    @php
+    $lessonToken = App\LessonToken::where('lesson_id', $lesson->id)->first();
+    @endphp
     <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Code #1</a>
+        <li class="nav-item">{{$lesson->name}}
+            @if($lessonToken==null)
+                <form action="{{ route('token_create',$lesson->id) }}" method="POST">
+                    {{ csrf_field() }}
+                    <button type="submit">( + )</button>
+                </form>
+            @else
+                <span>  : {{$lessonToken->token}}</span>
+            @endif
         </li>
     </ul>
+    @endforeach
 
     <br>
     <br>
 
     <h2>Options</h2>
-    <input type=button onclick=window.location.href="{{ url('/lesson') }}"; value="Créer une nouvelle séance" />
+    <input type=button onclick=window.location.href="{{ url('/lesson_create') }}"; value="Créer une nouvelle séance" />
     <br>
-    <button type="button">Partager un lien</button>
+    <button type="button" disabled="disabled">Partager un lien</button>
 </body>
 </html>

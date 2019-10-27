@@ -27,8 +27,6 @@ class TeachingLessonsSeeder extends Seeder
                 'teacher_id' => 3,
                 'begin_at' => Carbon::create(2019, 12, 2, 10, 0, 0, 'Europe/Paris'),
                 'end_at' => Carbon::create(2019, 12, 2, 12, 0, 0, 'Europe/Paris'),
-                'longitude' => 45.782268,
-                'latitude' => 4.865865,
                 'unit_id' => 1
             ]
         ]);
