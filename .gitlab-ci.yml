@@ -48,7 +48,11 @@ before_script:
   - php artisan migrate
   # Run database seed
   - php artisan db:seed
-  
+  - mv composer.phar /usr/local/bin/composer;
+  - composer global require "squizlabs/php_codesniffer=*"
+  - /root/.composer/vendor/bin/phpcs  --standard=Zend ./app
+  - /root/.composer/vendor/bin/phpcs  --standard=Zend ./routes
+  - /root/.composer/vendor/bin/phpcs  --standard=Zend ./resources
 
 test:
   script:
