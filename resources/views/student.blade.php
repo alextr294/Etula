@@ -1,7 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Student {{ Auth::user()->name }}</h1>
-
-    <h4>In Construction 😴</h4>
+<div class="col-md-3">
+    <form action="{{ route('token_validate')}}" method="POST">
+        {{ csrf_field() }}
+        <h3>Valider ma présence</h3>
+        <input id="token" type="text" class="form-control" name="token">
+        <button type="submit">Valider</button>
+    </form>
+    @foreach ($lessons as $lesson)
+        <p>{{ $lesson->name }}</p>
+    @endforeach
+</div>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Lesson;
+use App\Student;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -28,10 +29,13 @@ class HomeController extends Controller
     {
         $user_type = Auth::user()->type;
         if($user_type=="student"){
+            $lessons = Auth::user()->studentAccess->presentLessons;
+            //var_dump(Auth::user()->id);
+            //return view('student', compact("lessons"));
             return view('student');
         }
         elseif($user_type=="teacher"){
-            $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();;
+            $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();
             return view('teacher',compact("lessons"));
         }
         elseif($user_type=="admin"){

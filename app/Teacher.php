@@ -34,4 +34,9 @@ class Teacher extends Model
     {
         return $this->belongsToMany('App\Lesson');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
