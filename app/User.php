@@ -55,7 +55,7 @@ class User extends Authenticatable
      * @param $query
      * @return mixed
      */
-    public function scopeAccess($query)
+    /*public function scopeAccess($query)
     {
         return $query
             ->when($this->type === 'student',function($q){
@@ -67,7 +67,7 @@ class User extends Authenticatable
             ->when($this->type === 'admin',function($q){
                 return $q->with('adminAccess');
             });
-    }
+    }*/
 
     /**
      * Check if user is admin

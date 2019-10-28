@@ -32,4 +32,17 @@ class TokenController extends Controller
         $token->save();
         return redirect()->route('home');
     }
+
+    public function accept(Request $request){
+        $token = $request->input('token');
+        $lessonToken = LessonToken::where('token',$token)->first();
+
+        if($lessonToken !=null){
+            $lesson = Lesson::where('id',$lessonToken->lesson_id)->first();
+            $student_id = Auth::user()->id;
+            $lesson->presentStudents()->attach($student_id);
+        }
+
+        return redirect()->route('home');
+    }
 }

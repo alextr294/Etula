@@ -45,3 +45,11 @@ Route::post('token_create/{id}', [
     'uses' => 'TokenController@create',
 
  ]);
+
+ Route::post('token_validate', [
+
+     'as' => 'token_validate',
+
+     'uses' => 'TokenController@accept',
+
+  ]);

@@ -12,4 +12,9 @@ class Admin extends Model
     * @var bool
     */
    public $timestamps = false;
+
+   public function user()
+   {
+       return $this->belongsTo('App\User');
+   }
 }
