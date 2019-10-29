@@ -50,26 +50,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Retrieve rank for the user, given his type ($this->access())
-     *
-     * @param $query
-     * @return mixed
-     */
-    /*public function scopeAccess($query)
-    {
-        return $query
-            ->when($this->type === 'student',function($q){
-                return $q->with('studentAccess');
-            })
-            ->when($this->type === 'teacher',function($q){
-                return $q->with('teacherAccess');
-            })
-            ->when($this->type === 'admin',function($q){
-                return $q->with('adminAccess');
-            });
-    }*/
-
-    /**
      * Check if user is admin
      *
      */

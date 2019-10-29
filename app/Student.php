@@ -17,6 +17,15 @@ class Student extends Model
    protected $primaryKey = "user_id";
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id'
+    ];
+
+    /**
      * Get Groups from this Student
      *
      * @return BelongsToMany

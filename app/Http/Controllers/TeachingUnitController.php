@@ -35,7 +35,6 @@ class TeachingUnitController extends Controller
      */
     public function index() {
         $courses = TeachingUnit::all();
-
         if ($courses == null) {
             return new JsonResponse(array('message'=>'404 not found'),404);
         } else {
@@ -60,7 +59,6 @@ class TeachingUnitController extends Controller
      */
     public function show($idCourse) {
         $course = DB::table('teaching_units')->find($idCourse);
-
         if ($course == null) {
             return new JsonResponse(array('message'=>'404 not found'),404);
         } else {
@@ -74,7 +72,8 @@ class TeachingUnitController extends Controller
      *
      */
     public function create() {
-        return view('course.input_form');
+        $groups = Group::all();
+        return view('course.input_form', compact('groups'));
     }
 
     /**
@@ -85,10 +84,11 @@ class TeachingUnitController extends Controller
      */
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'group_id' => 'required|integer'
         ]);
         TeachingUnit::create($validatedData);
-        return redirect()->action('TeachingUnitController@index');
+        return redirect()->route('courses.index');
     }
 
 }
