@@ -21,7 +21,7 @@ class TeachingUnit extends Model
     * @var array
     */
    protected $fillable = [
-      'name'
+      'name', 'group_id'
    ];
 
     /**
@@ -41,18 +41,6 @@ class TeachingUnit extends Model
      */
     public function group() {
         return $this->belongsTo('App\Group');
-    }
-
-    /**
-     * Create new record.
-     *
-     * @param $data
-     */
-    public static function create($data) {
-        $new = new TeachingUnit;
-        $new->name = $data['name'];
-        $new->group_id = 1;
-        $new->save();
     }
 
 }

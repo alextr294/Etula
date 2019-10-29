@@ -6,15 +6,9 @@ use App\Group;
 use App\TeachingUnit;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class TeachingUnitController extends Controller
 {
-    /*
-     * This is Teaching Unit Controller.
-     * ================================
-     */
-
     /**
      * Create new Controller instance.
      *
@@ -22,9 +16,9 @@ class TeachingUnitController extends Controller
      */
     public function __construct()
     {
-        /*
-         * Default condition test: user must log in.
-         */
+        // TODO: Determine if teachers and students need to see all TeachingUnits, if they do we need policies.
+        // middleware = for all class, policy = can differ for some actions
+        // TODO: add missing actions (see LessonController)
         $this->middleware('auth');
     }
 
@@ -35,7 +29,6 @@ class TeachingUnitController extends Controller
      */
     public function index() {
         $courses = TeachingUnit::all();
-
         if ($courses == null) {
             return new JsonResponse(array('message'=>'404 not found'),404);
         } else {
@@ -59,8 +52,7 @@ class TeachingUnitController extends Controller
      * @return mixed
      */
     public function show($idCourse) {
-        $course = DB::table('teaching_units')->find($idCourse);
-
+        $course = TeachingUnit::find($idCourse);
         if ($course == null) {
             return new JsonResponse(array('message'=>'404 not found'),404);
         } else {
@@ -74,7 +66,9 @@ class TeachingUnitController extends Controller
      *
      */
     public function create() {
-        return view('course.input_form');
+        // TODO: Admin Policy
+        $groups = Group::all();
+        return view('course.input_form', compact('groups'));
     }
 
     /**
@@ -84,11 +78,13 @@ class TeachingUnitController extends Controller
      * @return mixed
      */
     public function store(Request $request) {
+        // TODO: Admin Policy
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'group_id' => 'required|integer'
         ]);
         TeachingUnit::create($validatedData);
-        return redirect()->action('TeachingUnitController@index');
+        return redirect()->route('courses.index');
     }
 
 }

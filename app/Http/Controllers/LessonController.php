@@ -2,21 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Lesson;
 use App\TeachingUnit;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
-    public function create(){
-        $units = TeachingUnit::all();
-        return view('lesson_create',compact('units'));
+    /**
+     * Create new Controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // TODO: Determine if admins and students need to see all Lessons, if they do we need policies.
+        // middleware = for all class, policy = can differ for some actions
+        $this->middleware('auth');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
 
-    public function postForm(Request $request){
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        // TODO: Teacher Policy
+        $units = TeachingUnit::all();
+        $types = ['CM', 'TD', 'TP'];
+        return view('lesson_create', compact('units', 'types'));
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // TODO: Teacher Policy
         $request->validate([
             'name' => 'required',
             'type' =>'required',
@@ -25,17 +60,60 @@ class LessonController extends Controller
             'unit' =>'required',
         ]);
 
+        Lesson::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'begin_at' => $request->begin_at,
+            'end_at' => $request->end_at,
+            'unit_id' => $request->unit,
+            'teacher_id' => $request->user()->id
+        ]);
 
-        $lesson = new Lesson;
-        $lesson->name = $request->input('name');
-        $lesson->type= $request->input('type');
-        $lesson->unit_id = $request->input('unit');
-        $lesson->begin_at= $request->input('begin_at');
-        $lesson->end_at= $request->input('end_at');
-        $lesson->teacher_id= Auth::user()->id;
-
-        $lesson->save();
         return redirect()->route('home');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Lesson  $lesson
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Lesson $lesson)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Lesson  $lesson
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Lesson $lesson)
+    {
+        // TODO: Teacher Policy
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Lesson  $lesson
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Lesson $lesson)
+    {
+        // TODO: Teacher Policy
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Lesson  $lesson
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Lesson $lesson)
+    {
+        // TODO: Teacher Policy
+    }
 }

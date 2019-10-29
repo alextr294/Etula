@@ -18,6 +18,15 @@ class Teacher extends Model
     protected $primaryKey = "user_id";
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id'
+    ];
+
+    /**
      * Get Lessons owned by this Teacher
      *
      * @return HasMany
@@ -34,7 +43,7 @@ class Teacher extends Model
      */
     public function supervisedLessons()
     {
-        return $this->belongsToMany('App\Lesson');
+        return $this->belongsToMany('App\Lesson', 'lesson_teacher', 'teacher_id', 'lesson_id');
     }
 
     public function user()

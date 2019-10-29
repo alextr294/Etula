@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,9 +15,9 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        /*
-         * Default condition test: user must log in.
-         */
+        // TODO: Determine if teachers and students need to see all Users, if they do we need policies.
+        // middleware = for all class, policy = can differ for some actions
+        // TODO: add missing actions (see LessonController)
         $this->middleware('admin');
     }
 
@@ -29,7 +28,6 @@ class UserController extends Controller
      */
     public function index() {
         $users = User::all();
-
         $usersByType = array('admin'=>[],'teacher'=>[],'student'=>[]);
         foreach ($users as $user) {
             array_push($usersByType[$user->type],$user);
@@ -41,7 +39,6 @@ class UserController extends Controller
             //return new JsonResponse((array)$selectedUsers,200);
             return view('auth.user_manager',['allUsers' => $usersByType]);
         }
-
     }
 
     /**
@@ -56,7 +53,7 @@ class UserController extends Controller
         if ($user == null) {
             return new JsonResponse(array('user not found'),404);
         } else {
-            //TODO: view user profile
+            // TODO: view user profile
             return new JsonResponse((array)$user,200);
         }
     }
@@ -69,7 +66,8 @@ class UserController extends Controller
      * @return mixed
      */
     public function create() {
-        return view('auth.register');
+        // TODO: Admin Policy
+        return view('auth.user_add');
     }
 
     /**
@@ -79,19 +77,34 @@ class UserController extends Controller
      * @return mixed
      */
     public function store(Request $request) {
-        $validatedData = $request->validate([
+        // TODO: Admin Policy
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'type' => 'required'
         ]);
-        //User::create($validatedData);
-        $user = new User();
-        $user->password = Hash::make($validatedData['password']);
-        $user->email = $validatedData['email'];
-        $user->name = $validatedData['name'];
-        $user->type = $validatedData['type'];
-        $user->save();
-        return view('admin');
+
+        // can't create directly because we need to crypt the password
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'type' => $request['type']
+        ]);
+
+        switch($user->type) {
+            case "student":
+                $user->studentAccess()->create(['user_id' => $user->id]);
+                break;
+            case "admin:":
+                $user->adminAccess()->create(['user_id' => $user->id]);
+                break;
+            case "teacher":
+                $user->teacherAccess()->create(['user_id' => $user->id]);
+                break;
+        }
+
+        return redirect()->route('users.index');
     }
 }
