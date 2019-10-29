@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\TeachingUnit;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TeachingUnitController extends Controller
@@ -37,7 +39,16 @@ class TeachingUnitController extends Controller
         if ($courses == null) {
             return new JsonResponse(array('message'=>'404 not found'),404);
         } else {
-            return new JsonResponse((array)$courses,200);
+            // create custom $courseWithMane
+            $coursesWithGroup = [];
+            foreach ($courses as $course) {
+                array_push($coursesWithGroup,array(
+                    'id'=>$course->id,
+                    'name'=>$course->name,
+                    'group_name'=>Group::find($course->group_id)->name
+                ));
+            }
+            return view('course.course_manager',array('courses'=>$coursesWithGroup));
         }
     }
 
@@ -68,12 +79,16 @@ class TeachingUnitController extends Controller
 
     /**
      * POST(/courses)
+     *
+     * @param Request $request
+     * @return mixed
      */
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'name' => 'required|max:255'
+            'name' => 'required|string|max:255'
         ]);
         TeachingUnit::create($validatedData);
+        return redirect()->action('TeachingUnitController@index');
     }
 
 }

@@ -30,6 +30,11 @@ Route::get('/home/student/{token?}', 'HomeController@index')->name('student_code
     Route::resource('courses','TeachingUnitController');
 
 /**
+ * User.
+ */
+Route::resource('users','UserController');
+
+/**
  * Teacher.
  */
 Route::get('/teacher', function () {
