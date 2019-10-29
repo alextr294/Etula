@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Register</div>
                 <div class="card-body">
-                    <form role="form" method="POST" action="{{ url('/register') }}">
+                    <form role="form" method="POST" action="{{ url('/users') }}">
                         {!! csrf_field() !!}
 
                         {{-- NAME INPUT --}}
