@@ -51,7 +51,7 @@ class TeachingUnit extends Model
     public static function create($data) {
         $new = new TeachingUnit;
         $new->name = $data['name'];
-        $new->group_id = $data['group_id'];
+        $new->group_id = 1;
         $new->save();
     }
 
