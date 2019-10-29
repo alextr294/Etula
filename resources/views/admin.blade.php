@@ -8,13 +8,12 @@
             <h3>Menu</h3>
         </div>
         <ul class="list-unstyled components">
-            <li><a href=" {{ route('users.create') }}">Add new User</a></li>
-            <li><a href=" {{ route('users.index') }}">View all Users</a></li>
-            <li><a href=" {{ route('courses.create') }}">Add new Course</a></li>
-            <li><a href=" {{ route('courses.index') }}">View all Courses</a></li>
+            <li><a href="{{ route('users.create') }}">Add new User</a></li>
+            <li><a href="{{ route('users.index') }}">View all Users</a></li>
+            <li><a href="{{ route('courses.create') }}">Add new Course</a></li>
+            <li><a href="{{ route('courses.index') }}">View all Courses</a></li>
         </ul>
     </nav>
-
     {{-- Page Content --}}
     <div id="content" class="container mt-5">
         {{-- NavBar Togle Button --}}

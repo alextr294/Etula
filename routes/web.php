@@ -24,40 +24,26 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/student/{token?}', 'HomeController@index')->name('student_code_validation');
 
 /**
- * Admin Only
+ * Resources controllers.
  */
-    //==Teaching Unit==
-    Route::resource('courses','TeachingUnitController');
+
+Route::resources([
+    'users' => 'UserController',
+    'courses' => 'TeachingUnitController',
+    'lessons' => 'LessonController'
+]);
 
 /**
- * User.
+ * TokenController.
  */
-Route::resource('users','UserController');
-
-/**
- * Teacher.
- */
-Route::get('/teacher', function () {
-    return view('teacher');
-});
-
-Route::get('lesson_create', 'LessonController@create');
-Route::post('lesson_create', 'LessonController@postForm');
-
 Route::post('token_create/{id}', [
-
     'as' => 'token_create',
-
     'uses' => 'TokenController@create',
-
- ]);
+]);
 
 //Route::get('token_validate/{token}', 'TokenController@accept');
 
 Route::post('token_validate', [
-
     'as' => 'token_validate',
-
     'uses' => 'TokenController@accept',
-
 ]);

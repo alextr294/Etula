@@ -15,9 +15,9 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        /*
-         * Default condition test: user must log in.
-         */
+        // TODO: Determine if teachers and students need to see all Users, if they do we need policies.
+        // middleware = for all class, policy = can differ for some actions
+        // TODO: add missing actions (see LessonController)
         $this->middleware('admin');
     }
 
@@ -28,7 +28,6 @@ class UserController extends Controller
      */
     public function index() {
         $users = User::all();
-
         $usersByType = array('admin'=>[],'teacher'=>[],'student'=>[]);
         foreach ($users as $user) {
             array_push($usersByType[$user->type],$user);
@@ -40,7 +39,6 @@ class UserController extends Controller
             //return new JsonResponse((array)$selectedUsers,200);
             return view('auth.user_manager',['allUsers' => $usersByType]);
         }
-
     }
 
     /**
@@ -68,6 +66,7 @@ class UserController extends Controller
      * @return mixed
      */
     public function create() {
+        // TODO: Admin Policy
         return view('auth.user_add');
     }
 
@@ -78,6 +77,7 @@ class UserController extends Controller
      * @return mixed
      */
     public function store(Request $request) {
+        // TODO: Admin Policy
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
