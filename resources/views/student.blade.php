@@ -5,7 +5,8 @@
     <form action="{{ route('token_validate')}}" method="POST">
         {{ csrf_field() }}
         <h3>Valider ma présence</h3>
-        <input id="token" type="text" class="form-control" name="token">
+        <input id="token" type="text" class="form-control" name="token" value="{{ $token }}">
+
         <button type="submit">Valider</button>
     </form>
     @foreach ($lessons as $lesson)

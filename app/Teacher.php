@@ -15,6 +15,8 @@ class Teacher extends Model
     */
    public $timestamps = false;
 
+    protected $primaryKey = "user_id";
+
     /**
      * Get Lessons owned by this Teacher
      *
