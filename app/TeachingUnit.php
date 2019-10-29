@@ -45,8 +45,10 @@ class TeachingUnit extends Model
 
     /**
      * Create new record.
+     *
+     * @param $data
      */
-    public function create($data) {
+    public static function create($data) {
         $new = new TeachingUnit;
         $new->name = $data['name'];
         $new->group_id = $data['group_id'];
