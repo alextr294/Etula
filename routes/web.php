@@ -21,6 +21,7 @@ Auth::routes();
  */
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/student/{token?}', 'HomeController@index')->name('student_code_validation');
 
 /**
  * Admin Only
@@ -46,10 +47,12 @@ Route::post('token_create/{id}', [
 
  ]);
 
- Route::post('token_validate', [
+//Route::get('token_validate/{token}', 'TokenController@accept');
 
-     'as' => 'token_validate',
+Route::post('token_validate', [
 
-     'uses' => 'TokenController@accept',
+    'as' => 'token_validate',
 
-  ]);
+    'uses' => 'TokenController@accept',
+
+]);

@@ -14,6 +14,8 @@ class Student extends Model
     */
    public $timestamps = false;
 
+   protected $primaryKey = "user_id";
+
     /**
      * Get Groups from this Student
      *

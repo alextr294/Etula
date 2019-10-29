@@ -17,6 +17,7 @@
         <h1>Enseignants</h1>
 
         <h2>Séances</h2>
+
         @foreach($lessons as $lesson)
         @php
         $lessonToken = App\LessonToken::where('lesson_id', $lesson->id)->first();
@@ -24,12 +25,13 @@
         <ul class="nav flex-column">
             <li class="nav-item">{{$lesson->name}}
                 @if($lessonToken==null)
-                <form action="{{ route('token_create',$lesson->id) }}" method="POST">
-                    {{ csrf_field() }}
-                    <button type="submit">( + )</button>
-                </form>
+                    <form action="{{ route('token_create',$lesson->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit">( + )</button>
+                    </form>
                 @else
-                <span>  : {{$lessonToken->token}}</span>
+                    <span> : {{ $lessonToken->token }}</span>
+                    <span> : {{ route('student_code_validation', $lessonToken->token) }}</span>
                 @endif
             </li>
         </ul>

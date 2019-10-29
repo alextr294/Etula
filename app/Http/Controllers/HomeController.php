@@ -7,6 +7,7 @@ use App\User;
 use App\Lesson;
 use App\Student;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Console\Input\Input;
 
 class HomeController extends Controller
 {
@@ -21,18 +22,20 @@ class HomeController extends Controller
     }
 
     /**
-    * Show the application dashboard.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function index(Request $request)
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @param $token
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request, $token = null)
     {
         $user_type = Auth::user()->type;
         if($user_type=="student"){
+
             $lessons = Auth::user()->studentAccess->presentLessons;
-            //var_dump(Auth::user()->id);
-            //return view('student', compact("lessons"));
-            return view('student');
+
+            return view('student', compact(["lessons", "token"]));
         }
         elseif($user_type=="teacher"){
             $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();
