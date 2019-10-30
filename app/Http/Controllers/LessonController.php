@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Lesson;
+use App\User;
 use App\TeachingUnit;
 use Illuminate\Http\Request;
 
@@ -80,7 +81,16 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
-        //
+        $students_id = $lesson->unit->group->students;
+        $students = [];
+        foreach ($students_id as $student_id) {
+            $id = $student_id->user_id;
+            $students [] = User::where('id', $id)->get();
+        }
+
+        //var_dump($students);
+
+        return view('lesson_details',compact("lesson","students"));
     }
 
     /**
