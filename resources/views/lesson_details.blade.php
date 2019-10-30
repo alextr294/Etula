@@ -9,7 +9,7 @@
     <h3>Alternants : </h3>
     <br>
     @foreach($students as $student)
-    <h3>{{$student[0]->name}}</h3>
+    <h3>{{$student[0][0]->name}} : {{$student[1]}}</h3>
     @endforeach
 </div>
 @endsection
