@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\LessonToken;
 use App\Lesson;
-use Illuminate\Support\Facades\Auth;
 
 class TokenController extends Controller
 {
-    public function create(Request $request){
-
+    public function create($id){
         $token = new LessonToken;
-        $token->lesson_id = $request->id;
+        $token->lesson_id = $id;
 
         $characts = 'abcdefghijklmnopqrstuvwxyz';
         $characts .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -26,21 +23,20 @@ class TokenController extends Controller
         }
 
         $token->token = $code_aleatoire;
-        $token->longitude = $request->longitude;
-        $token->latitude = $request->latitude;
+        $token->longitude = 0;
+        $token->latitude = 0;
 
         $token->save();
-        return new JsonResponse(array('success'=>true),200);
+        return redirect()->route('home');
     }
 
     public function accept(Request $request){
-
         $token = $request->input('token');
-        $lessonToken = LessonToken::where('token',$token)->first();
+        $lessonToken = LessonToken::where('token', $token)->first();
 
-        if($lessonToken !=null){
-            $lesson = Lesson::where('id',$lessonToken->lesson_id)->first();
-            $student_id = Auth::user()->id;
+        if($lessonToken != null) {
+            $lesson = Lesson::where('id', $lessonToken->lesson_id)->first();
+            $student_id = $request->user()->id;
 
             if(!$lesson->presentStudents->contains($student_id)) {
                 $lesson->presentStudents()->attach($student_id);
