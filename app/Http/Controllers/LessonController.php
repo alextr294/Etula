@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Lesson;
+use App\User;
 use App\TeachingUnit;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
     /**
-     * Create new Controller instance.
-     *
-     * @return void
-     */
+    * Create new Controller instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         // TODO: Determine if admins and students need to see all Lessons, if they do we need policies.
@@ -21,20 +22,20 @@ class LessonController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         //
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function create()
     {
         // TODO: Teacher Policy
@@ -44,11 +45,11 @@ class LessonController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(Request $request)
     {
         // TODO: Teacher Policy
@@ -73,45 +74,65 @@ class LessonController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Lesson $lesson)
-    {
-        //
+    * Display the specified resource.
+    *
+    * @param  \App\Lesson  $lesson
+    * @return \Illuminate\Http\Response
+    */
+    public function show(Lesson $lesson){
+        $presentStudents_id = $lesson->presentStudents;
+        $studentsPresents = [];
+
+        foreach ($presentStudents_id as $presentStudent_id) {
+            $studentsPresents [] = $presentStudent_id->user_id;
+        }
+
+        $students_id = $lesson->unit->group->students;
+        $students = array();
+
+        foreach ($students_id as $student_id) {
+            $present = "Pas Validé";
+            $id = $student_id->user_id;
+            if (in_array($id, $studentsPresents)) {
+                $present = "Validé";
+            }
+            $students [] = array(User::where('id', $id)->get(), $present);
+        }
+
+        //var_dump($students);
+
+        return view('lesson_details',compact("lesson","students"));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for editing the specified resource.
+    *
+    * @param  \App\Lesson  $lesson
+    * @return \Illuminate\Http\Response
+    */
     public function edit(Lesson $lesson)
     {
         // TODO: Teacher Policy
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Lesson  $lesson
+    * @return \Illuminate\Http\Response
+    */
     public function update(Request $request, Lesson $lesson)
     {
         // TODO: Teacher Policy
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Lesson  $lesson
-     * @return \Illuminate\Http\Response
-     */
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Lesson  $lesson
+    * @return \Illuminate\Http\Response
+    */
     public function destroy(Lesson $lesson)
     {
         // TODO: Teacher Policy
