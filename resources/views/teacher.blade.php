@@ -14,8 +14,8 @@
                     <button id="create-token" type="submit" data-id="{{ $lesson->id }}">( + )</button>
                 </form>
                 @else
-                <span> : {{ $lessonToken->token }}</span>
-                <span> : {{ route('student_code_validation', $lessonToken->token) }}</span>
+                <span> : {{ $lesson->token->token }}</span>
+                <span> : {{ route('student_code_validation', $lesson->token->token) }}</span>
                 @endif
             </li>
         </ul>
