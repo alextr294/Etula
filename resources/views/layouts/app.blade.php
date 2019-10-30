@@ -17,7 +17,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -28,9 +28,22 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     @if (Auth::guest())
-                        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
-{{--                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>--}}
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}" class="nav-link">Login</a></li>
                     @else
+                        @php
+                            $user_type = Auth::user()->type
+                        @endphp
+                        @if($user_type == "admin")
+                            <li class="nav-item"><a class="nav-link" href="{{ route('users.create') }}">Créer un utilisateur</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">Liste des utilisateurs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('courses.create') }}">Ajouter un unité d'enseignement</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('courses.index') }}">Liste des unités d'enseignement</a></li>
+                        @elseif($user_type == "teacher")
+                            <li class="nav-item"><a class="nav-link" href="{{ route('lessons.create') }}">Créer une leçon</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('lessons.index') }}">Liste des leçons</a></li>
+                        @else
+                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">En construction...</a></li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
