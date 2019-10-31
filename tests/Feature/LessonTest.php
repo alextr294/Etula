@@ -79,11 +79,11 @@ class LessonAndTokenTest extends TestCase
     }
 
     public function test_add_coach_to_an_existing_lesson() {
-
+        // not implemented
     }
 
     public function test_add_coach_to_non_existing_lesson() {
-
+        // not implemented
     }
 
     /**
@@ -96,7 +96,7 @@ class LessonAndTokenTest extends TestCase
         $this->actingAs($this->createUser("student"));
 
         $this->get(url('lessons'))->assertStatus(401); // forbidden
-        $response = $this->post('lesson_create', $this->getLesson());
+        $response = $this->post(url('lessons'), $this->getLesson());
 
         $response->assertStatus(401);
     }
@@ -111,15 +111,49 @@ class LessonAndTokenTest extends TestCase
     }
 
     public function test_admin_cant_activate_lesson() {
+        $this->actingAs($this->createUser("teacher"));
+
+        $this->post(url('lessons'), $this->getLesson());
+        $this->startSession();
+
+        $this->actingAs($this->createUser("admin"));
+
+        $lesson = DB::table('lessons')->get()->first();
+        $this->post(url('token_create', ["id" => $lesson->id]),['_token' => csrf_token()])->assertStatus(401);
+
+        $this->assertEquals(0, LessonToken::count());
 
     }
 
     public function test_student_cant_activate_lesson() {
+        $this->actingAs($this->createUser("teacher"));
 
+        $this->post(url('lessons'), $this->getLesson());
+        $this->startSession();
+
+        $this->actingAs($this->createUser("student"));
+
+        $lesson = DB::table('lessons')->get()->first();
+        $this->post(url('token_create', ["id" => $lesson->id]),['_token' => csrf_token()])->assertStatus(401);
+
+        $this->assertEquals(0, LessonToken::count());
     }
 
     public function test_a_teacher_cant_activate_other_teachers_lesson_than_his() {
+        $user_good = $this->createUser("teacher");
+        $user_bad = $this->createUser("teacher");
 
+        $this->actingAs($user_good);
+
+        $this->post(url('lessons'), $this->getLesson());
+        $this->startSession();
+
+        $this->actingAs($user_bad);
+
+        $lesson = DB::table('lessons')->get()->first();
+        $this->post(url('token_create', ["id" => $lesson->id]),['_token' => csrf_token()])->assertStatus(401);
+
+        $this->assertEquals(0, LessonToken::count());
     }
 
 
