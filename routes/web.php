@@ -47,3 +47,8 @@ Route::post('token_validate', [
     'as' => 'token_validate',
     'uses' => 'TokenController@accept',
 ]);
+
+Route::post('students_validate', [
+    'as' => 'students_validate',
+    'uses' => 'TokenController@acceptByTeacher',
+]);

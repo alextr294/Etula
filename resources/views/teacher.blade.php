@@ -22,6 +22,5 @@
     @endforeach
     <h2>Options</h2>
     <a class="btn btn-primary" href="{{route('lessons.create')}}">Créer une nouvelle séance</a>
-    <a class="btn btn-primary disabled">Partager un lien</a>
 </div>
 @endsection
