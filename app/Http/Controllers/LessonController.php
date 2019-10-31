@@ -91,10 +91,10 @@ class LessonController extends Controller
         $students = array();
 
         foreach ($students_id as $student_id) {
-            $present = "Pas Validé";
+            $present = false;
             $id = $student_id->user_id;
             if (in_array($id, $studentsPresents)) {
-                $present = "Validé";
+                $present = true;
             }
             $students [] = array(User::where('id', $id)->get(), $present);
         }

@@ -45,4 +45,18 @@ class TokenController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function acceptByTeacher(Request $request){
+        $lesson = Lesson::where('id', $request->input('lesson_id'))->first();
+        $lesson->presentStudents()->detach();
+        foreach($_POST as $key=>$valeur){
+            if( strstr($key, "student")){
+                $student_id = preg_replace('~\D~', '', $key);
+                if(!$lesson->presentStudents->contains($student_id)) {
+                    $lesson->presentStudents()->attach($student_id);
+                }
+            }
+        }
+        return redirect()->route('home');
+    }
 }
