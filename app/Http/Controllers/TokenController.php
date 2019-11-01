@@ -12,12 +12,12 @@ class TokenController extends Controller
         $token = new LessonToken;
         $token->lesson_id = $id;
 
-        $characts = 'abcdefghijklmnopqrstuvwxyz';
-        $characts .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $characts .= '1234567890';
+        //$characts = 'abcdefghijklmnopqrstuvwxyz';
+        //$characts .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characts = '1234567890';
         $code_aleatoire = '';
 
-        for($i=0;$i < 10;$i++)
+        for($i=0;$i < 6;$i++)
         {
             $code_aleatoire .= $characts[ rand() % strlen($characts) ];
         }
@@ -27,6 +27,12 @@ class TokenController extends Controller
         $token->latitude = 0;
 
         $token->save();
+
+        return view('code', compact('token'));
+    }
+
+    public function delete($id){
+        LessonToken::where('lesson_id',$id)->delete();
         return redirect()->route('home');
     }
 
