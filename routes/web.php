@@ -27,6 +27,7 @@ Route::get('/home/student/{token?}', 'HomeController@index')->name('student_code
  * Resources controllers.
  */
 
+
 Route::resources([
     'users' => 'UserController',
     'courses' => 'TeachingUnitController',
@@ -36,9 +37,27 @@ Route::resources([
 /**
  * TokenController.
  */
-Route::post('token_create/{id}', [
+
+/*Route::post('token_create/{id}', [
     'as' => 'token_create',
     'uses' => 'TokenController@create',
+]);*/
+
+
+Route::get('code/{id}', [
+
+    'as' => 'code',
+
+    'uses' => 'TokenController@create',
+
+]);
+
+Route::get('delete/{id}', [
+
+    'as' => 'delete',
+
+    'uses' => 'TokenController@delete',
+
 ]);
 
 //Route::get('token_validate/{token}', 'TokenController@accept');
