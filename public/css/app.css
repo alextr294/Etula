@@ -12134,3 +12134,8 @@ ul ul a {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
+.navbar-color {
+  background-image: -webkit-gradient(linear, left top, right top, from(#8c5383), color-stop(#7d6daa), color-stop(#5e89c5), color-stop(#34a2d1), to(#25b9cf)) !important;
+  background-image: linear-gradient(to right, #8c5383, #7d6daa, #5e89c5, #34a2d1, #25b9cf) !important;
+}
+

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Étula;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,7 +31,7 @@ class TeachingUnit extends Model
      */
     public function lessons()
     {
-        return $this->hasMany('App\Lesson', 'unit_id');
+        return $this->hasMany('Étula\Lesson', 'unit_id');
     }
 
     /**
@@ -40,7 +40,7 @@ class TeachingUnit extends Model
      * @return BelongsTo
      */
     public function group() {
-        return $this->belongsTo('App\Group');
+        return $this->belongsTo('Étula\Group');
     }
 
 }
