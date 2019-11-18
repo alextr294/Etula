@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<meta http-equiv="refresh" content="10; url=http://localhost/scanetu/public/delete/{{$token->lesson_id}}">
+<meta http-equiv="refresh" content="10; url={{action('TokenController@delete',$token->lesson_id)}}">
 @section('content')
 <div class="container">
     <br>
