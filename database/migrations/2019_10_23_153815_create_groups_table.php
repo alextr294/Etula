@@ -19,7 +19,7 @@ class CreateGroupsTable extends Migration
         });
 
         Schema::table('teaching_units', function (Blueprint $table) {
-            $table->unsignedInteger('group_id');
+            $table->unsignedInteger('group_id')->nullable();
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
         });
     }

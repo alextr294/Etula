@@ -59,6 +59,14 @@ class Lesson extends Model
      */
     public function presentStudents()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\Student', 'lesson_student', 'lesson_id', 'student_id');
+    }
+
+    /**
+     * Teachers
+     */
+    public function teachers()
+    {
+        return $this->belongsToMany('App\Teacher', 'lesson_teacher', 'lesson_id', 'teacher_id');
     }
 }
