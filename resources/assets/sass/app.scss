@@ -17,3 +17,14 @@
 .navbar-color {
   background-image: linear-gradient(to right, #8c5383, #7d6daa, #5e89c5, #34a2d1, #25b9cf) !important;
 }
+
+.navbar-light a {
+  color: white !important;
+}
+
+#app-title {
+  font-size: 72px;
+  background: linear-gradient(to right, #8c5383, #7d6daa, #5e89c5, #34a2d1, #25b9cf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
