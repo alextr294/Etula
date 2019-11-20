@@ -30,7 +30,9 @@
         <form action="{{ route('teacher_add')}}" method="POST">
             {{ csrf_field() }}
         @foreach($teachers as $teacher)
+            @if( $teacher->id != $lesson->teacher_id )
             <h4>{{$teacher->name}}  <input type="checkbox" id="{{$teacher->id}}" name="list{{$teacher->id}}" value="{{$teacher->id}}"></h4>
+            @endif
         @endforeach
         <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
         <button id="add-teacher" type="submit">Add Teacher(s)</button>

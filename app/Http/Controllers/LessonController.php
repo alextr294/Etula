@@ -8,6 +8,7 @@ use App\TeachingUnit;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\LessonTeacher;
 
 class LessonController extends Controller
 {
@@ -165,4 +166,18 @@ class LessonController extends Controller
     {
         // TODO: Teacher Policy
     }
+
+    public function teacher_add(Request $request){
+        $list_name = $request->all();
+        array_shift($list_name);
+        $lesson_id = array_pop($list_name);
+        $lesson = Lesson::find($lesson_id);
+        foreach($list_name as $key=>$valeur){
+            if(!$lesson->teachers->contains($valeur)) {
+                $lesson->teachers()->attach($valeur);
+            }
+        }
+        return redirect()->route('lessons.show',$lesson_id);
+    }
+
 }

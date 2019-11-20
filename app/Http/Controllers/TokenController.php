@@ -67,23 +67,4 @@ class TokenController extends Controller
         }
         return redirect()->route('home');
     }
-
-    public function teacher_add(Request $request){
-        $list_name = $request->all();
-        array_shift($list_name);
-        $lesson_id = array_pop($list_name);
-        $lesson_teachers = LessonTeacher::all();   
-        foreach($list_name as $key=>$valeur){
-            foreach($lesson_teachers as $lesson_teacher){
-                echo $lesson_teacher->attributes;
-                var_dump($lesson_teacher->toArray());
-                if(in_array(array($lesson_id,$valeur),$lesson_teacher->toArray(),false)) {
-                    LessonTeacher::insert([
-                        "lesson_id" => $lesson_id,
-                        "teacher_id" => $valeur
-                    ]);
-                }
-            }
-        }
-    }
 }
