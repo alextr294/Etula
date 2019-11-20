@@ -1,46 +1,59 @@
-
-.course-manager-content{
-    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-    background: linear-gradient(to right, #25c481, #25b7c4);
+.course-manager-content {
+    background-image: linear-gradient(to right top, #b026e1, #a12dd8, #9232ce, #8434c4, #7636ba, #8535b3, #9234ac, #9c35a5, #bc379d, #d64094, #eb4d8a, #fb5f81);
+    padding: 20px;
+    border: 2px solid blueviolet;
+    border-radius: 20px;
 }
 
 .course-manager-content>h1{
     font-size: 30px;
-    color: #000;
+    color: #EDEDED;
     text-transform: uppercase;
     font-weight: 300;
     text-align: center;
     margin-bottom: 15px;
 }
+
 .course-tbl{
     width:100%;
     table-layout: fixed;
+    color: #EDEDED;
 }
+
 .tbl-header{
     background-color: rgba(255,255,255,0.3);
     text-align: center;
+    border-radius: 10px 10px 0px 0px;
 }
+
 .tbl-content{
     height:300px;
     overflow-x:auto;
     margin-top: 0;
     border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 0px 0px 10px 10px;
 }
+
+.course-tbl>thead>tr>th {
+    color: #EDEDED;
+}
+
 .course-tbl>th{
     padding: 20px 15px;
     text-align: left;
     font-weight: 500;
     font-size: 12px;
-    color: #fff;
+    color: #EDEDED;
     text-transform: uppercase;
 }
+
 .course-tbl>td{
     padding: 15px;
     text-align: left;
     vertical-align:middle;
     font-weight: 300;
     font-size: 12px;
-    color: #fff;
+    color: #EDEDED;
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
 

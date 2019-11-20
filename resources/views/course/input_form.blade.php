@@ -5,14 +5,14 @@
     <div class="row justify-content-md-center mt-5">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create New Course</div>
+                <div class="card-header">Cr&eacute;er une nouvelle unit&eacute; d'enseignement</div>
                 <div class="card-body">
                     <form role="form" method="POST" action="{{url('/courses')}}">
                         {!! csrf_field() !!}
 
                         {{-- NAME INPUT --}}
                         <div class="form-group row">
-                            <label for="" class="col-md-4 col-form-label">Name</label>
+                            <label for="" class="col-md-4 col-form-label">Nom</label>
                             <div class="col-md-8">
                                 <input type="text"
                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -30,6 +30,7 @@
                         {{-- GROUP SELECT --}}
                         <div class="form-group row">
                             <label for="group-input" class="col-md-4 col-form-label">Group</label>
+                            <label for="group-input" class="col-md-4 col-form-label">Groupe</label>
                             <div class="col-md-8">
                                 <select id="group-input" name="group_id" class="form-control{{ $errors->has('group_id') ? ' is-invalid' : '' }}">
                                     <option value="" selected>...</option>
@@ -49,7 +50,7 @@
 
 
                         {{-- SUMMIT BUTTON --}}
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary float-right">Cr&eacute;er</button>
                     </form>
                 </div>
             </div>
