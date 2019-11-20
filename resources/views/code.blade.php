@@ -24,6 +24,8 @@
             document.getElementById('decompte').innerText = 'Terminé !';
             document.getElementById('cache').style.display = 'block';
             window.clearInterval(timer);
+
+            // ajax: send delete method to server
         }
 
         sec--;

@@ -26,13 +26,38 @@ Route::get('/home/student/{token?}', 'HomeController@index')->name('student_code
 /**
  * Resources controllers.
  */
-
-
 Route::resources([
     'users' => 'UserController',
     'courses' => 'TeachingUnitController',
-    'lessons' => 'LessonController'
+    'lessons' => 'LessonController',
+    'groups' => 'GroupController'
 ]);
+
+/**
+ * GroupController customized route(s).
+ */
+// GET/groups/{idGroup}/students/create
+Route::get('groups/{idGroup}/students/create', array(
+    'as'=>'group_add_student_form',
+    'uses'=>'GroupController@add_student_form')
+);
+
+// GET(/groups/{idGroup}/students/search)
+Route::get('groups/{idGroup}/student/search', array(
+    'as'=>'group_search_student',
+    'uses'=>'GroupController@search_student'
+));
+// POST/groups/{idGroup}/students -- add new group member
+Route::post('groups/{idGroup}/students', array(
+    'as'=>'group_add_student',
+    'uses'=>'GroupController@add_student')
+);
+// DELETE(/groups/{idGroup}/students/{idStudent}) -- remove member from group
+Route::delete('groups/{idGroup}/students/{idStudent}', array(
+    'as'=>'group_remove_student',
+    'uses'=>'GroupController@remove_student'
+));
+
 
 /**
  * TokenController.
