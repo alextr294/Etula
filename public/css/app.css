@@ -11954,6 +11954,32 @@ a.text-dark:focus {
   }
 }
 
+/* Form
+-----------------------------*/
+
+.radio-btn input[type="radio"]:checked + label::after {
+  background: white;
+}
+
+.radio-btn input[type="radio"]:checked + label {
+  border-color: blueviolet;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#d16ba5), color-stop(#c777b9), color-stop(#ba83ca), color-stop(#aa8fd8), color-stop(#9a9ae1), color-stop(#8aa7ec), color-stop(#79b3f4), color-stop(#69bff8), color-stop(#52cffe), color-stop(#41dfff), color-stop(#46eefa), to(#5ffbf1));
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  color: white;
+  font-weight: bold;
+}
+
+.radio-btn label {
+  border: 2px solid blueviolet;
+}
+
+.radio-btn label::after {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#d16ba5), color-stop(#c777b9), color-stop(#ba83ca), color-stop(#aa8fd8), color-stop(#9a9ae1), color-stop(#8aa7ec), color-stop(#79b3f4), color-stop(#69bff8), color-stop(#52cffe), color-stop(#41dfff), color-stop(#46eefa), to(#5ffbf1));
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
+
+/*---------------------------*/
+
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -12141,10 +12167,24 @@ ul ul a {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Css de la page de login.
 .navbar-light a {
+=======
+a.nav-link,
+a.navbar-brand {
+>>>>>>> Css et traduction de la page d'ajout utilisateur dans admin.
   color: white !important;
+}
+
+.dropdown-toggle::after {
+  right: 0px !important;
+}
+
+#navbarSupportedContent .nav-link {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #app-title {

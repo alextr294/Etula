@@ -34,11 +34,26 @@
                             $user_type = Auth::user()->type
                         @endphp
                         @if($user_type == "admin")
-                            <li class="nav-item"><a class="nav-link" href="{{ route('users.create') }}">Créer un utilisateur</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">Liste des utilisateurs</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('courses.create') }}">Ajouter un unité d'enseignement</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('courses.index') }}">Liste des unités d'enseignement</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('groups.index') }}">Liste des groupes</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    Gestion des utilisateurs
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownUsers">
+                                    <a class="dropdown-item" href="{{ route('users.create') }}">Créer un utilisateur</a>
+                                    <a class="dropdown-item" href="{{ route('users.index') }}">Liste des utilisateurs</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTeaching" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    Gestion des unités d'enseignement
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownTeaching">
+                                    <a class="dropdown-item" href="{{ route('courses.create') }}">Ajouter une unité d'enseignement</a>
+                                    <a class="dropdown-item" href="{{ route('courses.index') }}">Liste des unités d'enseignement</a>
+                                </div>
+                            </li>
                         @elseif($user_type == "teacher")
                             <li class="nav-item"><a class="nav-link" href="{{ route('lessons.create') }}">Créer une leçon</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('lessons.index') }}">Liste des leçons</a></li>
