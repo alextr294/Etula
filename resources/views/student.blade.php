@@ -9,8 +9,8 @@
 
         <button type="submit">Valider</button>
     </form>
-    @foreach ($lessons as $lesson)
-        <p>{{ $lesson->name }}</p>
-    @endforeach
+    <br>
+    <br>
+    <a class="btn btn-primary" href="{{route('lesson_student')}}">Récapitulatif de présences</a>
 </div>
 @endsection
