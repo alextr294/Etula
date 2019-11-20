@@ -6,8 +6,7 @@
     <br>
     <h3>début : {{$lesson->begin_at}}  fin : {{$lesson->end_at}}</h3>
     <br>
-    <h3>Responsable: {{$lesson->teacher_id}}</h3>
-    <h3>User {{Auth::user()->id}}</h3>
+    <h3>Responsable: {{$lesson->owner->user->name}}</h3>
     <h3>Alternants : </h3>
     <br>
     <form action="{{ route('students_validate')}}" method="POST">
