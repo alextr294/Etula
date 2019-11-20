@@ -31,7 +31,7 @@ class Group extends Model
      */
     public function students()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\Student', 'group_student', 'group_id', 'student_id');
     }
 
     /**

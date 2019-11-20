@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // création de 5 users aléatoires en db
-        //$this->users = factory(App\User::class, 5)->create();
+        // $this->users = factory(App\User::class, 5)->create();
         $this->call([
             UsersSeeder::class,
             GroupsSeeder::class,

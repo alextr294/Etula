@@ -15,6 +15,17 @@ class Teacher extends Model
     */
    public $timestamps = false;
 
+    protected $primaryKey = "user_id";
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id'
+    ];
+
     /**
      * Get Lessons owned by this Teacher
      *
@@ -32,6 +43,11 @@ class Teacher extends Model
      */
     public function supervisedLessons()
     {
-        return $this->belongsToMany('App\Lesson');
+        return $this->belongsToMany('App\Lesson', 'lesson_teacher', 'teacher_id', 'lesson_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

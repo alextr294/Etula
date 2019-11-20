@@ -14,6 +14,17 @@ class Student extends Model
     */
    public $timestamps = false;
 
+   protected $primaryKey = "user_id";
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id'
+    ];
+
     /**
      * Get Groups from this Student
      *
@@ -31,6 +42,11 @@ class Student extends Model
      */
     public function presentLessons()
     {
-        return $this->belongsToMany('App\Lesson');
+        return $this->belongsToMany('App\Lesson', 'lesson_student', 'student_id', 'lesson_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }
