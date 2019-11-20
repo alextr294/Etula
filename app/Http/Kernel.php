@@ -60,5 +60,7 @@ class Kernel extends HttpKernel
 
         // Customized Middleware
         'admin' => \App\Http\Middleware\AdminAccess::class,
+        'teacher' => \App\Http\Middleware\TeacherAccess::class,
+        'student' => \App\Http\Middleware\StudentAccess::class
     ];
 }
