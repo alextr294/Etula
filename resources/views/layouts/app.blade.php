@@ -38,6 +38,7 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">Liste des utilisateurs</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('courses.create') }}">Ajouter un unité d'enseignement</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('courses.index') }}">Liste des unités d'enseignement</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('groups.index') }}">Liste des groupes</a></li>
                         @elseif($user_type == "teacher")
                             <li class="nav-item"><a class="nav-link" href="{{ route('lessons.create') }}">Créer une leçon</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('lessons.index') }}">Liste des leçons</a></li>
