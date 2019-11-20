@@ -43,6 +43,8 @@ Route::resources([
     'uses' => 'TokenController@create',
 ]);*/
 
+Route::get('/lesson_student', 'LessonController@showLessonsStudent')->name('lesson_student');
+
 
 Route::get('code/{id}', [
 
