@@ -22,5 +22,7 @@
             </tr>
             @endforeach
         </TABLE>
+        <br>
+        <a class="btn btn-primary" href="{{route('StudentPdf')}}">Générer un PDF</a>
     </div>
     @endsection
