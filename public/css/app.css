@@ -12139,6 +12139,7 @@ ul ul a {
   background-image: linear-gradient(to right, #8c5383, #7d6daa, #5e89c5, #34a2d1, #25b9cf) !important;
 }
 
+<<<<<<< HEAD
 .navbar-light a {
   color: white !important;
 }
@@ -12151,3 +12152,5 @@ ul ul a {
   -webkit-text-fill-color: transparent;
 }
 
+=======
+>>>>>>> conflits rebase.
