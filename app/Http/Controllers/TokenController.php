@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\LessonToken;
 use App\Lesson;
+use App\LessonTeacher;
 
 class TokenController extends Controller
 {

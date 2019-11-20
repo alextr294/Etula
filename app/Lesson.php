@@ -40,7 +40,7 @@ class Lesson extends Model
      * @return BelongsTo
      */
     public function owner() {
-        return $this->belongsTo('App\Teacher');
+        return $this->belongsTo('App\Teacher', 'teacher_id', 'user_id');
     }
 
     /**

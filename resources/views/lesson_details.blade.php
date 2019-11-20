@@ -6,6 +6,7 @@
     <br>
     <h3>début : {{$lesson->begin_at}}  fin : {{$lesson->end_at}}</h3>
     <br>
+    <h3>Responsable: {{$lesson->owner->user->name}}</h3>
     <h3>Alternants : </h3>
     <br>
     <form action="{{ route('students_validate')}}" method="POST">
@@ -23,5 +24,18 @@
         <br>
         <button id="validate-students" type="submit">Valider</button>
     </form>
+    
+    @if(Auth::user()->id == $lesson->teacher_id)
+        <form action="{{ route('teacher_add')}}" method="POST">
+            {{ csrf_field() }}
+        @foreach($teachers as $teacher)
+            @if( $teacher->id != $lesson->teacher_id )
+            <h4>{{$teacher->name}}  <input type="checkbox" id="{{$teacher->id}}" name="list{{$teacher->id}}" value="{{$teacher->id}}"></h4>
+            @endif
+        @endforeach
+        <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
+        <button id="add-teacher" type="submit">Add Teacher(s)</button>
+        </form>
+    @endif
 </div>
 @endsection
