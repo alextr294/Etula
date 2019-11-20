@@ -103,3 +103,11 @@ Route::post('teacher_add', [
     'as' => 'teacher_add',
     'uses' => 'LessonController@teacher_add',
 ]);
+
+Route::get('StudentPdf', [
+
+    'as' => 'StudentPdf',
+
+    'uses' => 'PdfController@createPdf',
+
+]);
