@@ -73,3 +73,8 @@ Route::post('students_validate', [
     'as' => 'students_validate',
     'uses' => 'TokenController@acceptByTeacher',
 ]);
+
+Route::post('teacher_add', [
+    'as' => 'teacher_add',
+    'uses' => 'TokenController@teacher_add',
+]);

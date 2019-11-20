@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lesson;
 use App\User;
 use App\TeachingUnit;
+use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,6 +83,11 @@ class LessonController extends Controller
     */
     public function show(Lesson $lesson){
         $presentStudents_id = $lesson->presentStudents;
+        $teachers_id = Teacher::all(); //var_dump($teachers);die();
+        $teachers = array();
+        foreach($teachers_id as $t) {
+            array_push($teachers,User::find($t->user_id));
+        }
         $studentsPresents = [];
 
         foreach ($presentStudents_id as $presentStudent_id) {
@@ -102,7 +108,7 @@ class LessonController extends Controller
 
         //var_dump($students);
 
-        return view('lesson_details',compact("lesson","students"));
+        return view('lesson_details',compact("lesson","students","teachers"));
     }
 
     public function showLessonsStudent(Request $request){
