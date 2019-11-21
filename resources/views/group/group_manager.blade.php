@@ -14,15 +14,15 @@
                     </div>
                     <div class="card-body">
                         @if(count($groups))
-                        <ul>
-                            @foreach($groups as $group)
-                                <li class="p-2">
-                                    {{$group->name}}
-                                    <button class="btn btn-outline-primary" onclick="showGroup()">Info</button>
-                                    <button class="btn btn-outline-danger" onclick="deleteGroup()">Delete</button>
-                                </li>
-                            @endforeach
-                        </ul>
+                            <ul>
+                                @foreach($groups as $group)
+                                    <li class="p-2">
+                                        {{$group->name}}
+                                        <button class="btn btn-outline-primary" onclick="showGroup()">Info</button>
+                                        <button class="btn btn-outline-danger" onclick="deleteGroup('{{action('GroupController@destroy',$group->id)}}',{{$group->id}})">Delete</button>
+                                    </li>
+                                @endforeach
+                            </ul>
                         @else
                             <p class="p-2 text-dark">Database does not have any group</p>
                         @endif
@@ -44,7 +44,7 @@
                 window.location.href ='{{action('GroupController@show',$group->id)}}';
             }
 
-            function deleteGroup() {
+            function deleteGroup(url,idGroup) {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -53,8 +53,8 @@
 
                 $.ajax({
                     type:'DELETE',
-                    url:'{{action('GroupController@destroy',$group->id)}}',
-                    data:{idGroup: '{{$group->id}}' },
+                    url:url,
+                    data:{idGroup: idGroup },
                     dataType: 'json',
                     success:function(response){
                         alert(response.message);
