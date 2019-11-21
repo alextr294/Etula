@@ -79,7 +79,16 @@ class LessonAndTokenTest extends TestCase
     }
 
     public function test_add_coach_to_an_existing_lesson() {
-        // not implemented
+        // On cree d'abord un teacher qui va creer une lesson
+        $this->actingAs($this->createUser("teacher"));
+        $lesson = $this->getLesson();
+        $this->post(url('lessons'), $lesson);
+
+        // On ajoute ensuite des encadrants a cette lesson
+        $e1 = $this->createUser("teacher");
+        $e2 = $this->createUser("teacher");
+
+        $this->post(url('teachers_add'));
     }
 
     public function test_add_coach_to_non_existing_lesson() {
