@@ -5,8 +5,14 @@
     <form action="{{ route('token_validate')}}" method="POST">
         {{ csrf_field() }}
         <h3>Valider ma présence</h3>
-        <input id="token" type="text" class="form-control" name="token" value="{{ $token }}">
-
+        <div class="">
+        	<input id="token" type="text" class="form-control{{ $errors->has('token') ? ' is-invalid' : '' }}" name="token" value="{{ $token }}">
+        	@if ($errors->has('token'))
+        	<span class="help-block">
+            	<strong>{{ $errors->first('token') }}</strong>
+        	</span>
+        	@endif
+        </div>
         <button type="submit">Valider</button>
     </form>
     <br>

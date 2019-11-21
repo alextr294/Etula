@@ -39,6 +39,9 @@ class TokenController extends Controller
     }
 
     public function accept(Request $request){
+        $request->validate([
+            'token' => 'required|string|max:6'
+        ]);
         $token = $request->input('token');
         $lessonToken = LessonToken::where('token', $token)->first();
 

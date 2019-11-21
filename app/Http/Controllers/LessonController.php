@@ -57,11 +57,11 @@ class LessonController extends Controller
     {
         // TODO: Teacher Policy
         $request->validate([
-            'name' => 'required',
-            'type' =>'required',
-            'begin_at' =>'required',
-            'end_at' =>'required',
-            'unit' =>'required',
+            'name' => 'required|string|max:255',
+            'type' =>'required|in:CM,TD,TP',
+            'begin_at' =>'required|date',
+            'end_at' =>'required|date',
+            'unit' =>'required|exists:teaching_units,id',
         ]);
 
         Lesson::create([
