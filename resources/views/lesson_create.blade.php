@@ -35,26 +35,47 @@
                                 @endif
                             </div>
                         </div>
+                        {{-- begin at input --}}
                         <div class="form-group{{ $errors->has('begin_at') ? ' has-error' : '' }}">
                             <label for="begin_at" class="col-md-4 control-label">Début du cours</label>
                             <div class="col-md-6">
-                                <input type="datetime-local" id="begin_at" class="form-control" name="begin_at" value="{{ old('begin_at') }}" required autofocus>
-                                @if ($errors->has('begin_at'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('begin_at') }}</strong>
-                                    </span>
-                                @endif
+                                <div class="row text-center">
+                                    {{-- date --}}
+                                    <input type="date" id="begin_at" class="form-control col-md-6" name="begin_at" value="{{ old('begin_at') }}" required autofocus>
+                                    @if ($errors->has('begin_at'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('begin_at') }}</strong>
+                                        </span>
+                                    @endif
+                                    {{-- time --}}
+                                    <input type="text" id="begin_at_time" class="form-control col-md-6" name="begin_at_time" value="{{ old('begin_at_time') }}" required autofocus>
+                                    @if ($errors->has('begin_at_time'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('begin_at_time') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }}">
                             <label for="end_at" class="col-md-4 control-label">Fin du cours</label>
                             <div class="col-md-6">
-                                <input type="datetime-local" id="end_at" class="form-control" name="end_at" value="{{ old('end_at') }}" required autofocus>
-                                @if ($errors->has('end_at'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('end_at') }}</strong>
-                                    </span>
-                                @endif
+                                <div class="row text-center">
+                                    {{-- date --}}
+                                    <input type="date" id="end_at" class="form-control col-md-6" name="end_at" value="{{ old('end_at') }}" required autofocus>
+                                    @if ($errors->has('end_at'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('end_at') }}</strong>
+                                        </span>
+                                    @endif
+                                    {{-- time --}}
+                                    <input type="text" id="end_at_time" class="form-control col-md-6" name="end_at_time" value="{{ old('end_at_time') }}" required autofocus>
+                                    @if ($errors->has('end_at_time'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('end_at_time') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('unit') ? ' has-error' : '' }}">
@@ -85,4 +106,18 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
+    <script type="text/javascript">
+        let time_picker = new TimePicker(['begin_at_time','end_at_time'], {
+            lang: 'en',
+            theme: 'dark'
+        });
+
+        time_picker.on('change', function(evt) {
+            evt.element.value = (evt.hour || '00') + ':' + (evt.minute || '00');
+        });
+    </script>
 @endsection
