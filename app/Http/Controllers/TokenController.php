@@ -40,7 +40,7 @@ class TokenController extends Controller
 
     public function accept(Request $request){
         $request->validate([
-            'token' => 'required|string|max:6'
+            'token' => 'required|numeric|digits:6'
         ]);
         $token = $request->input('token');
         $lessonToken = LessonToken::where('token', $token)->first();
@@ -50,8 +50,15 @@ class TokenController extends Controller
             $student_id = $request->user()->id;
 
             if(!$lesson->presentStudents->contains($student_id)) {
+                $request->session()->flash('success', 'Vous venez de valider votre présence !');
                 $lesson->presentStudents()->attach($student_id);
             }
+            else{
+                $request->session()->flash('warning', 'Vous avez déjà validé votre présence !');
+            }
+        }
+        else {
+            $request->session()->flash('danger', 'Mauvais code !');
         }
 
         return redirect()->route('home');
