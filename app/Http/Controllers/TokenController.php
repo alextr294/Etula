@@ -25,8 +25,6 @@ class TokenController extends Controller
         }
 
         $token->token = $code_aleatoire;
-        $token->longitude = 0;
-        $token->latitude = 0;
 
         $token->save();
 
