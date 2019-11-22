@@ -29,7 +29,6 @@
 
                         {{-- GROUP SELECT --}}
                         <div class="form-group row">
-                            <label for="group-input" class="col-md-4 col-form-label">Group</label>
                             <label for="group-input" class="col-md-4 col-form-label">Groupe</label>
                             <div class="col-md-8">
                                 <select id="group-input" name="group_id" class="form-control{{ $errors->has('group_id') ? ' is-invalid' : '' }}">

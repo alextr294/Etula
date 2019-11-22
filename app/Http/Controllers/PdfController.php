@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Étula\Http\Controllers;
 use PDF;
-use App\Lesson;
-use App\User;
-use App\TeachingUnit;
+use Étula\Lesson;
+use Étula\User;
+use Étula\TeachingUnit;
 
 use Illuminate\Http\Request;
 

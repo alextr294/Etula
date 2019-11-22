@@ -17,7 +17,6 @@
                         @endif
                     </div>
 
-                    <input id="token" type="text" class="form-control" name="token" value="{{ $token }}">
                     <br>
 
                     @if(session('success')!=null)
