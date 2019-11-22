@@ -29,12 +29,15 @@
 
                         {{-- GROUP SELECT --}}
                         <div class="form-group row">
-                            <label for="" class="col-md-4 col-form-label">Group</label>
+                            <label for="group-input" class="col-md-4 col-form-label">Group</label>
                             <div class="col-md-8">
-                                <select name="group_id" class="form-control{{ $errors->has('group_id') ? ' is-invalid' : '' }}">
-                                    @foreach($groups as $group)
-                                        <option value="{{$group->id}}">{{$group->name}}</option>
-                                    @endforeach
+                                <select id="group-input" name="group_id" class="form-control{{ $errors->has('group_id') ? ' is-invalid' : '' }}">
+                                    <option value="" selected>...</option>
+                                    @if(count($groups) > 0)
+                                        @foreach($groups as $group)
+                                            <option value="{{$group->id}}">{{$group->name}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                                 @if ($errors->has('group_id'))
                                     <div class="invalid-feedback">
@@ -43,6 +46,7 @@
                                 @endif
                             </div>
                         </div>
+
 
                         {{-- SUMMIT BUTTON --}}
                         <button type="submit" class="btn btn-primary">Create</button>
