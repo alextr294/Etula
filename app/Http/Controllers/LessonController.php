@@ -48,27 +48,33 @@ class LessonController extends Controller
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
     public function store(Request $request)
     {
         // TODO: Teacher Policy
         $request->validate([
             'name' => 'required|string|max:255',
             'type' =>'required|in:CM,TD,TP',
-            'begin_at' =>'required|date',
-            'end_at' =>'required|date',
+            'begin_at' =>'required|date|after_or_equal:today', // always in format: yyyy-mm-dd
+            'begin_at_time' => 'required|date_format:G:i', // format: hh:mm 24h
+            'end_at' =>'required|date|after_or_equal:today|after_or_equal:begin_at', // always in format: yyyy-mm-dd
+            'end_at_time' => 'required|date_format:G:i|after:begin_at_time', // format: hh:mm 24h
             'unit' =>'required|exists:teaching_units,id',
         ]);
-
+        // create begin_at & end_at attributes
+        $begin_at = new \DateTime($request->begin_at.' '.$request->begin_at_time);
+        $end_at = new \DateTime($request->end_at.' '.$request->end_at_time);
+        // add new in DB
         Lesson::create([
             'name' => $request->name,
             'type' => $request->type,
-            'begin_at' => $request->begin_at,
-            'end_at' => $request->end_at,
+            'begin_at' => $begin_at,
+            'end_at' => $end_at,
             'unit_id' => $request->unit,
             'teacher_id' => $request->user()->id
         ]);
