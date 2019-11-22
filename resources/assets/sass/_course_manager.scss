@@ -1,5 +1,5 @@
 .course-manager-content {
-    background-image: linear-gradient(to right top, #b026e1, #a12dd8, #9232ce, #8434c4, #7636ba, #8535b3, #9234ac, #9c35a5, #bc379d, #d64094, #eb4d8a, #fb5f81);
+    background-color: #b026e1;
     padding: 20px;
     border: 2px solid blueviolet;
     border-radius: 20px;
@@ -20,13 +20,13 @@
     color: #EDEDED;
 }
 
-.tbl-header{
+.cm-header{
     background-color: rgba(255,255,255,0.3);
     text-align: center;
     border-radius: 10px 10px 0px 0px;
 }
 
-.tbl-content{
+.cm-content{
     height:300px;
     overflow-x:auto;
     margin-top: 0;
@@ -34,11 +34,16 @@
     border-radius: 0px 0px 10px 10px;
 }
 
-.course-tbl>thead>tr>th {
+.course-tbl a:hover {
+    color: slategray;
+    text-decoration: underline;
+}
+
+.cm-course>thead>tr>th {
     color: #EDEDED;
 }
 
-.course-tbl>th{
+.cm-course>th{
     padding: 20px 15px;
     text-align: left;
     font-weight: 500;
@@ -47,7 +52,7 @@
     text-transform: uppercase;
 }
 
-.course-tbl>td{
+.cm-course>td{
     padding: 15px;
     text-align: left;
     vertical-align:middle;

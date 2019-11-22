@@ -12097,8 +12097,7 @@ ul ul a {
 }
 
 .course-manager-content {
-  background-image: -webkit-gradient(linear, left bottom, right top, from(#b026e1), color-stop(#a12dd8), color-stop(#9232ce), color-stop(#8434c4), color-stop(#7636ba), color-stop(#8535b3), color-stop(#9234ac), color-stop(#9c35a5), color-stop(#bc379d), color-stop(#d64094), color-stop(#eb4d8a), to(#fb5f81));
-  background-image: linear-gradient(to right top, #b026e1, #a12dd8, #9232ce, #8434c4, #7636ba, #8535b3, #9234ac, #9c35a5, #bc379d, #d64094, #eb4d8a, #fb5f81);
+  background-color: #b026e1;
   padding: 20px;
   border: 2px solid blueviolet;
   border-radius: 20px;
@@ -12119,13 +12118,13 @@ ul ul a {
   color: #EDEDED;
 }
 
-.tbl-header {
+.cm-header {
   background-color: rgba(255, 255, 255, 0.3);
   text-align: center;
   border-radius: 10px 10px 0px 0px;
 }
 
-.tbl-content {
+.cm-content {
   height: 300px;
   overflow-x: auto;
   margin-top: 0;
@@ -12133,11 +12132,16 @@ ul ul a {
   border-radius: 0px 0px 10px 10px;
 }
 
-.course-tbl > thead > tr > th {
+.course-tbl a:hover {
+  color: slategray;
+  text-decoration: underline;
+}
+
+.cm-course > thead > tr > th {
   color: #EDEDED;
 }
 
-.course-tbl > th {
+.cm-course > th {
   padding: 20px 15px;
   text-align: left;
   font-weight: 500;
@@ -12146,7 +12150,7 @@ ul ul a {
   text-transform: uppercase;
 }
 
-.course-tbl > td {
+.cm-course > td {
   padding: 15px;
   text-align: left;
   vertical-align: middle;
@@ -12195,5 +12199,87 @@ a.navbar-brand {
   background: linear-gradient(to right, #8c5383, #7d6daa, #5e89c5, #34a2d1, #25b9cf);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.seance-tbl {
+  width: 100%;
+  table-layout: fixed;
+  color: black;
+}
+
+.teacher-header {
+  background-color: #c6c8ca;
+  text-align: center;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.teacher-content {
+  height: 300px;
+  overflow-x: auto;
+  margin-top: 0;
+  border: 1px solid #c6c8ca;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.seance-tbl > thead > tr > th {
+  color: black;
+}
+
+.seance-tbl a:hover {
+  color: slategray;
+  text-decoration: underline;
+}
+
+.seance-tbl > th {
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: black;
+  text-transform: uppercase;
+}
+
+.seance-tbl > td {
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: black;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.alternants-table h4 {
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#code-validation {
+  text-align: center;
+}
+
+#code-validation h2 {
+  font-size: 50px;
+}
+
+#code-validation p {
+  color: black;
+  font-size: 90px;
 }
 

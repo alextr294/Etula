@@ -7,8 +7,8 @@
                 <div class="course-manager-content">
                     <h1>Gestionnaire d'unit&eacute;s d'enseignement</h1>
 
-                    <div class="tbl-header">
-                        <table class="course-tbl" cellpadding="0" cellspacing="0" border="0">
+                    <div class="tbl-header cm-header">
+                        <table class="course-tbl cm-course" cellpadding="0" cellspacing="0" border="0">
                             <thead>
                                 <tr>
                                     <th>Nom</th>
@@ -18,8 +18,8 @@
                         </table>
                     </div>
 
-                    <div class="tbl-content">
-                        <table class="course-tbl" cellpadding="0" cellspacing="0" border="0">
+                    <div class="tbl-content cm-content">
+                        <table class="course-tbl table cm-course table-striped" cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 @foreach($courses as $course)
                                 <tr>

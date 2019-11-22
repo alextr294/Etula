@@ -56,9 +56,8 @@
                             </li>
                         @elseif($user_type == "teacher")
                             <li class="nav-item"><a class="nav-link" href="{{ route('lessons.create') }}">Créer une leçon</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('lessons.index') }}">Liste des leçons</a></li>
                         @else
-                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">En construction...</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('lesson_student')}}">Récapitulatif de présences</a></li>
                         @endif
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
