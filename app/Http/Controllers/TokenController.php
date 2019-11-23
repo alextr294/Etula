@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Étula\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\LessonToken;
-use App\Lesson;
-use App\LessonTeacher;
+use Étula\LessonToken;
+use Étula\Lesson;
+use Étula\LessonTeacher;
 
 class TokenController extends Controller
 {
@@ -25,8 +25,6 @@ class TokenController extends Controller
         }
 
         $token->token = $code_aleatoire;
-        $token->longitude = 0;
-        $token->latitude = 0;
 
         $token->save();
 

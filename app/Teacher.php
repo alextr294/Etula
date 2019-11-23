@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Étula;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -33,7 +33,7 @@ class Teacher extends Model
      */
     public function ownedLessons()
     {
-        return $this->hasMany('App\Lesson');
+        return $this->hasMany('Étula\Lesson');
     }
 
     /**
@@ -43,11 +43,11 @@ class Teacher extends Model
      */
     public function supervisedLessons()
     {
-        return $this->belongsToMany('App\Lesson', 'lesson_teacher', 'teacher_id', 'lesson_id');
+        return $this->belongsToMany('Étula\Lesson', 'lesson_teacher', 'teacher_id', 'lesson_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('Étula\User');
     }
 }

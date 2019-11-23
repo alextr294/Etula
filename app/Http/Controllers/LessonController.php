@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Étula\Http\Controllers;
 
-use App\Lesson;
-use App\User;
-use App\TeachingUnit;
-use App\Teacher;
+use Étula\Lesson;
+use Étula\User;
+use Étula\TeachingUnit;
+use Étula\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\LessonTeacher;
+use Étula\LessonTeacher;
 
 class LessonController extends Controller
 {
@@ -85,7 +85,7 @@ class LessonController extends Controller
     /**
     * Display the specified resource.
     *
-    * @param  \App\Lesson  $lesson
+    * @param  \Étula\Lesson  $lesson
     * @return \Illuminate\Http\Response
     */
     public function show(Lesson $lesson){
@@ -142,7 +142,7 @@ class LessonController extends Controller
     /**
     * Show the form for editing the specified resource.
     *
-    * @param  \App\Lesson  $lesson
+    * @param  \Étula\Lesson  $lesson
     * @return \Illuminate\Http\Response
     */
     public function edit(Lesson $lesson)
@@ -154,7 +154,7 @@ class LessonController extends Controller
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Lesson  $lesson
+    * @param  \Étula\Lesson  $lesson
     * @return \Illuminate\Http\Response
     */
     public function update(Request $request, Lesson $lesson)
@@ -165,7 +165,7 @@ class LessonController extends Controller
     /**
     * Remove the specified resource from storage.
     *
-    * @param  \App\Lesson  $lesson
+    * @param  \Étula\Lesson  $lesson
     * @return \Illuminate\Http\Response
     */
     public function destroy(Lesson $lesson)

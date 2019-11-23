@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Étula\Http\Controllers;
 
-use App\Group;
-use App\TeachingUnit;
+use Étula\Group;
+use Étula\TeachingUnit;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

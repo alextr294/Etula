@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Étula\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Lesson;
+use Étula\Lesson;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 

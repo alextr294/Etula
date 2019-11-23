@@ -4,7 +4,7 @@
 <div class="wrapper">
     {{-- Page Content --}}
     <div id="content" class="container mt-5">
-        <h1> Hello {{ Auth::user()->name }} </h1>
+        <h1> Bonjour {{ Auth::user()->name }} !</h1>
     </div>
 </div>
 @endsection
