@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Étula\Http\Controllers;
 
-use App\User;
+use Étula\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

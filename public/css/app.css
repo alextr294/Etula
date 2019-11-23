@@ -11954,6 +11954,32 @@ a.text-dark:focus {
   }
 }
 
+/* Form
+-----------------------------*/
+
+.radio-btn input[type="radio"]:checked + label::after {
+  background: white;
+}
+
+.radio-btn input[type="radio"]:checked + label {
+  border-color: blueviolet;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#d16ba5), color-stop(#c777b9), color-stop(#ba83ca), color-stop(#aa8fd8), color-stop(#9a9ae1), color-stop(#8aa7ec), color-stop(#79b3f4), color-stop(#69bff8), color-stop(#52cffe), color-stop(#41dfff), color-stop(#46eefa), to(#5ffbf1));
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  color: white;
+  font-weight: bold;
+}
+
+.radio-btn label {
+  border: 2px solid blueviolet;
+}
+
+.radio-btn label::after {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#d16ba5), color-stop(#c777b9), color-stop(#ba83ca), color-stop(#aa8fd8), color-stop(#9a9ae1), color-stop(#8aa7ec), color-stop(#79b3f4), color-stop(#69bff8), color-stop(#52cffe), color-stop(#41dfff), color-stop(#46eefa), to(#5ffbf1));
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
+
+/*---------------------------*/
+
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -12071,13 +12097,15 @@ ul ul a {
 }
 
 .course-manager-content {
-  background: -webkit-gradient(linear, left top, right top, from(#25c481), to(#25b7c4));
-  background: linear-gradient(to right, #25c481, #25b7c4);
+  background-color: #b026e1;
+  padding: 20px;
+  border: 2px solid blueviolet;
+  border-radius: 20px;
 }
 
 .course-manager-content > h1 {
   font-size: 30px;
-  color: #000;
+  color: #EDEDED;
   text-transform: uppercase;
   font-weight: 300;
   text-align: center;
@@ -12087,36 +12115,48 @@ ul ul a {
 .course-tbl {
   width: 100%;
   table-layout: fixed;
+  color: #EDEDED;
 }
 
-.tbl-header {
+.cm-header {
   background-color: rgba(255, 255, 255, 0.3);
   text-align: center;
+  border-radius: 10px 10px 0px 0px;
 }
 
-.tbl-content {
+.cm-content {
   height: 300px;
   overflow-x: auto;
   margin-top: 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0px 0px 10px 10px;
 }
 
-.course-tbl > th {
+.course-tbl a:hover {
+  color: slategray;
+  text-decoration: underline;
+}
+
+.cm-course > thead > tr > th {
+  color: #EDEDED;
+}
+
+.cm-course > th {
   padding: 20px 15px;
   text-align: left;
   font-weight: 500;
   font-size: 12px;
-  color: #fff;
+  color: #EDEDED;
   text-transform: uppercase;
 }
 
-.course-tbl > td {
+.cm-course > td {
   padding: 15px;
   text-align: left;
   vertical-align: middle;
   font-weight: 300;
   font-size: 12px;
-  color: #fff;
+  color: #EDEDED;
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }
 
@@ -12132,5 +12172,114 @@ ul ul a {
 
 ::-webkit-scrollbar-thumb {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-color {
+  background-image: -webkit-gradient(linear, left top, right top, from(#8c5383), color-stop(#7d6daa), color-stop(#5e89c5), color-stop(#34a2d1), to(#25b9cf)) !important;
+  background-image: linear-gradient(to right, #8c5383, #7d6daa, #5e89c5, #34a2d1, #25b9cf) !important;
+}
+
+a.nav-link,
+a.navbar-brand {
+  color: white !important;
+}
+
+.dropdown-toggle::after {
+  right: 0px !important;
+}
+
+#navbarSupportedContent .nav-link {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#app-title {
+  font-size: 72px;
+  background: -webkit-gradient(linear, left top, right top, from(#8c5383), color-stop(#7d6daa), color-stop(#5e89c5), color-stop(#34a2d1), to(#25b9cf));
+  background: linear-gradient(to right, #8c5383, #7d6daa, #5e89c5, #34a2d1, #25b9cf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.seance-tbl {
+  width: 100%;
+  table-layout: fixed;
+  color: black;
+}
+
+.teacher-header {
+  background-color: #c6c8ca;
+  text-align: center;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.teacher-content {
+  height: 300px;
+  overflow-x: auto;
+  margin-top: 0;
+  border: 1px solid #c6c8ca;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.seance-tbl > thead > tr > th {
+  color: black;
+}
+
+.seance-tbl a:hover {
+  color: slategray;
+  text-decoration: underline;
+}
+
+.seance-tbl > th {
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: black;
+  text-transform: uppercase;
+}
+
+.seance-tbl > td {
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: black;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.alternants-table h4 {
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#code-validation {
+  text-align: center;
+}
+
+#code-validation h2 {
+  font-size: 50px;
+}
+
+#code-validation p {
+  color: black;
+  font-size: 90px;
 }
 

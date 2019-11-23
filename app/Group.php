@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Étula;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -31,7 +31,7 @@ class Group extends Model
      */
     public function students()
     {
-        return $this->belongsToMany('App\Student', 'group_student', 'group_id', 'student_id');
+        return $this->belongsToMany('Étula\Student', 'group_student', 'group_id', 'student_id');
     }
 
     /**
@@ -40,6 +40,6 @@ class Group extends Model
      * @return HasMany
      */
     public function units() {
-        return $this->hasMany('App\TeachingUnit');
+        return $this->hasMany('Étula\TeachingUnit');
     }
 }

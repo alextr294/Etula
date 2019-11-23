@@ -40,19 +40,5 @@ class TeachingLessonsSeeder extends Seeder
                 'student_id' => 2
             ]
         ]);
-        DB::table('lesson_teacher')->insert([
-            [
-                'lesson_id' => 1,
-                'teacher_id' => 3
-            ]
-        ]);
-        DB::table('lesson_tokens')->insert([
-            [
-                'lesson_id' => 1,
-                'token' => str_random(10),
-                'longitude' => 45.782403,
-                'latitude' => 4.865854
-            ]
-        ]);
     }
 }

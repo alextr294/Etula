@@ -5,14 +5,14 @@
     <div class="row justify-content-md-center mt-5">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add a new user</div>
+                <div class="card-header">Ajouter un nouvel utilisateur</div>
                 <div class="card-body">
                     <form role="form" method="POST" action="{{ route('users.store') }}">
                         {!! csrf_field() !!}
 
                         {{-- NAME INPUT --}}
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Name</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">Nom</label>
                             <div class="col-lg-6">
                                 <input type="text"
                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -29,7 +29,7 @@
 
                         {{-- EMAIL INPUT --}}
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">E-Mail Address</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
                             <div class="col-lg-6">
                                 <input type="email"
                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -46,7 +46,7 @@
 
                         {{-- PASSWORD INPUT --}}
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Password</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">Mot de passe</label>
                             <div class="col-lg-6">
                                 <input type="password"
                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
@@ -62,7 +62,7 @@
 
                         {{-- CONFIRM PASSWORD --}}
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Confirm Password</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">Retapez le mot de passe</label>
                             <div class="col-lg-6">
                                 <input type="password"
                                        class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
@@ -81,25 +81,25 @@
                             {{-- Admin Select Button --}}
                             <div class="col-md-4 radio-btn">
                                 <input type="radio" id="admin-button" name="type" value="admin" checked />
-                                <label for="admin-button">Admin</label>
+                                <label for="admin-button">Administrateur</label>
                             </div>
                             {{-- Teacher Select Button --}}
                             <div class="col-md-4 radio-btn">
-                                <input type="radio" id="teacher-button" name="type" value="teacher" checked />
-                                <label for="teacher-button">Teacher</label>
+                                <input type="radio" id="teacher-button" name="type" value="teacher" />
+                                <label for="teacher-button">Enseignant</label>
                             </div>
                             {{-- Student Select Button --}}
                             <div class="col-md-4 radio-btn">
-                                <input type="radio" id="student-button" name="type" value="student" checked />
-                                <label for="student-button">Student</label>
+                                <input type="radio" id="student-button" name="type" value="student" />
+                                <label for="student-button">&Eacute;tudiant</label>
                             </div>
                         </div>
 
                         {{-- SUBMIT BUTTON --}}
                         <div class="form-group row">
                             <div class="col-lg-6 offset-lg-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Add user
+                                <button type="submit" class="btn btn-primary float-right">
+                                    Ajouter
                                 </button>
                             </div>
                         </div>
