@@ -38,18 +38,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('begin_at') ? ' has-error' : '' }} row">
-                                <label for="begin_at" class="col-md-4 control-label col-lg-4 col-form-label">Début du cours</label>
-                                <div class="col-md-12">
-                                    <input type="datetime-local" id="begin_at" class="form-control" name="begin_at" value="{{ old('begin_at') }}" required autofocus>
-                                    @if ($errors->has('begin_at'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('begin_at') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             {{-- begin at input --}}
                             <div class="form-group{{ $errors->has('begin_at') ? ' has-error' : '' }} row">
                                 <label for="begin_at" class="col-md-4 control-label col-lg-4 col-form-label">Début du cours</label>
