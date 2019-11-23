@@ -1,28 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-md-3">
-    <h1>Lessons<h1>
-        <br>
-        <TABLE border="1" cellspacing="0" cellpadding="5" width='1000'>
-            <tr>
-                <td width='500'>Dates</td>
-                <td width='500'>Nom de l'UE</td>
-                <td width='500'>Présent</td>
-            </tr>
-            @foreach ($AllLessons as $lesson)
-            <tr>
-                <td>début : {{$lesson->begin_at}}  <br> fin : {{$lesson->end_at}}</td>
-                <td>{{$lesson->type}} de {{$lesson->unit->name}} : {{$lesson->name}}</td>
-                @if(in_array($lesson->id, $PresentLessonsId))
-                <td bgcolor="green">
-                @else
-                <td bgcolor="red">
-                @endif
-            </tr>
-            @endforeach
-        </TABLE>
-        <br>
-        <a class="btn btn-primary" href="{{route('StudentPdf')}}">Générer un PDF</a>
+    <div class="container">
+        <div class="row justify-content-md-center mt-5">
+            <div class="col-md-8">
+                <h1>Liste des cours</h1>
+                <br>
+
+                <div class="tbl-header teacher-header">
+                    <table class="seance-tbl" cellpadding="0" cellspacing="0" border="0">
+                        <thead>
+                            <tr>
+                                <th>Dates</th>
+                                <th>Nom de l'UE</th>
+                                <th>Présent</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tbl-content teacher-content">
+                    <table class="seance-tbl table table-striped" cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+                        @foreach ($AllLessons as $lesson)
+                            <tr>
+                                <th>début : {{$lesson->begin_at}}  <br> fin : {{$lesson->end_at}}</th>
+                                <th>{{$lesson->type}} de {{$lesson->unit->name}} : {{$lesson->name}}</th>
+                                @if(in_array($lesson->id, $PresentLessonsId))
+                                    <th bgcolor="green"></th>
+                                @else
+                                    <th bgcolor="red"></th>
+                                @endif
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <a class="btn btn-primary" href="{{route('StudentPdf')}}">Générer un PDF</a>
+            </div>
+        </div>
     </div>
-    @endsection
+@endsection

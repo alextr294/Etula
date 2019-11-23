@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace Étula\Http\Controllers;
 
 
-use App\Group;
-use App\User;
+use Étula\Group;
+use Étula\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
