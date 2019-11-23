@@ -40,10 +40,5 @@ class TeachingLessonsSeeder extends Seeder
                 'student_id' => 2
             ]
         ]);
-        DB::table('lesson_tokens')->insert([
-            [
-                'lesson_id' => 1
-            ]
-        ]);
     }
 }
