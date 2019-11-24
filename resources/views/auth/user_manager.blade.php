@@ -1,4 +1,4 @@
-{{-- This file use _course_manager.scss --}}
+{{-- This file uses _course_manager.scss --}}
 @extends('layouts.app')
 
 @section('content')
@@ -27,7 +27,11 @@
                                 @foreach($usersByType as $user)
                                 <tr>
                                     <th>
-                                        <a href="{{ url('/users/'.$user->id) }}">{{ $user->name }}</a>
+                                        @if ($user->type == "student")
+                                            <a href="{{ route('student_present_lesson',array('idStudent'=>$user->id))}}">{{ $user->name }}</a>
+                                        @else
+                                            <a href="{{ url('/users/'.$user->id) }}">{{ $user->name }}</a>
+                                        @endif
                                     </th>
                                     <th>{{ $user->email }}</th>
                                     @if ($user->type == "admin")

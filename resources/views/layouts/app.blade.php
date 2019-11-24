@@ -54,6 +54,16 @@
                                     <a class="dropdown-item" href="{{ route('courses.index') }}">Liste des unités d'enseignement</a>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGroups" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    Gestion des groupes d'alternants
+                                </a>
+                                <div  class="dropdown-menu" aria-labelledby="navbarDropdownGroups">
+                                    <a class="dropdown-item" href="{{ route('groups.create') }}">Ajouter un groupe d'alternants</a>
+                                    <a class="dropdown-item" href="{{ route('groups.index') }}">Liste des groupes</a>
+                                </div>
+                            </li>
                         @elseif($user_type == "teacher")
                             <li class="nav-item"><a class="nav-link" href="{{ route('lessons.create') }}">Créer une leçon</a></li>
                         @else

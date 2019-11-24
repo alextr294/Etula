@@ -58,19 +58,33 @@ Route::delete('groups/{idGroup}/students/{idStudent}', array(
     'uses'=>'GroupController@remove_student'
 ));
 
+/**
+ * LessonController
+ */
+// Admin access:
+Route::get('students/{idStudent}/lessons', array(
+    'as'=>'student_present_lesson',
+    'uses'=>'LessonController@showLessonsStudentAdmin'
+))->middleware('admin');
+// Student access:
+Route::get('/lesson_student', 'LessonController@showLessonsStudent')->name('lesson_student');
+/**
+ * PdfController
+ */
+// Admin Access
+Route::get('students/{idStudent}/lessons/pdf', array(
+    'as'=>'student_present_lesson_pdf',
+    'uses'=>'PdfController@createPdfAdmin'
+))->middleware('admin');
+// Student access:
+Route::get('StudentPdf', [
+    'as' => 'StudentPdf',
+    'uses' => 'PdfController@createPdf',
+]);
 
 /**
  * TokenController.
  */
-
-/*Route::post('token_create/{id}', [
-    'as' => 'token_create',
-    'uses' => 'TokenController@create',
-]);*/
-
-Route::get('/lesson_student', 'LessonController@showLessonsStudent')->name('lesson_student');
-
-
 Route::get('code/{id}', [
 
     'as' => 'code',
@@ -102,12 +116,4 @@ Route::post('students_validate', [
 Route::post('teacher_add', [
     'as' => 'teacher_add',
     'uses' => 'LessonController@teacher_add',
-]);
-
-Route::get('StudentPdf', [
-
-    'as' => 'StudentPdf',
-
-    'uses' => 'PdfController@createPdf',
-
 ]);
