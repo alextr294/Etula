@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Étula;
 
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
@@ -32,21 +32,21 @@ class User extends Authenticatable
      * @return HasOne
      */
     public function studentAccess() {
-        return $this->hasOne('App\Student');
+        return $this->hasOne('Étula\Student');
     }
 
     /**
      * @return HasOne
      */
     public function teacherAccess() {
-        return $this->hasOne('App\Teacher');
+        return $this->hasOne('Étula\Teacher');
     }
 
     /**
      * @return HasOne
      */
     public function adminAccess() {
-        return $this->hasOne('App\Admin');
+        return $this->hasOne('Étula\Admin');
     }
 
     /**

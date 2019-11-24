@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Étula\User;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -16,10 +16,11 @@ abstract class TestCase extends BaseTestCase
         $this->startSession();
     }
 
-    protected function createUser($type) {
+    protected function createUser($type)
+    {
         $user = factory(User::class)->create(["type" => $type]);
 
-        switch($type) {
+        switch ($type) {
             case "student":
                 $user->studentAccess()->create(['user_id' => $user->id]);
                 break;
@@ -31,5 +32,41 @@ abstract class TestCase extends BaseTestCase
                 break;
         }
         return $user;
+    }
+
+    public function getLesson()
+    {
+        $groupe = factory(Group::class)->create();
+
+        $us = factory(TeachingUnit::class)->create(["group_id" => $groupe->id]);
+
+        return [
+            "_token" => csrf_token(),
+            "name" => "name",
+            "type" => "CM",
+            "begin_at" => "2019-10-20 10:00:00",
+            "end_at" => "2019-10-20 12:00:00",
+            "unit" => $us->id
+        ];
+
+    }
+
+    protected function getToken($lesson_id)
+    {
+        $token = new LessonToken;
+        $token->lesson_id = $lesson_id;
+
+        //$characts = 'abcdefghijklmnopqrstuvwxyz';
+        //$characts .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characts = '1234567890';
+        $code_aleatoire = '';
+
+        for ($i = 0; $i < 6; $i++) {
+            $code_aleatoire .= $characts[rand() % strlen($characts)];
+        }
+
+        $token->token = $code_aleatoire;
+        $token->longitude = 0;
+        $token->latitude = 0;
     }
 }

@@ -1,9 +1,11 @@
 <?php
 
-namespace App;
+namespace Étula;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
 {
@@ -32,7 +34,7 @@ class Student extends Model
      */
     public function groups()
     {
-        return $this->belongsToMany('App\Group');
+        return $this->belongsToMany('Étula\Group');
     }
 
     /**
@@ -42,11 +44,11 @@ class Student extends Model
      */
     public function presentLessons()
     {
-        return $this->belongsToMany('App\Lesson', 'lesson_student', 'student_id', 'lesson_id');
+        return $this->belongsToMany('Étula\Lesson', 'lesson_student', 'student_id', 'lesson_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('Étula\User');
     }
 }

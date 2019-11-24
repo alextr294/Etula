@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Étula;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,6 +29,6 @@ class LessonToken extends Model
      * @return BelongsTo
      */
     public function lesson() {
-        return $this->belongsTo('App\Lesson');
+        return $this->belongsTo('Étula\Lesson');
     }
 }

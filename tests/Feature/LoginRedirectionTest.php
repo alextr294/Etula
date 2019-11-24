@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use Étula\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginRedirectionTest extends TestCase

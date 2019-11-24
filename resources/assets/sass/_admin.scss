@@ -1,3 +1,26 @@
+/* Form
+-----------------------------*/
+.radio-btn input[type="radio"]:checked + label::after {
+  background: white;
+}
+
+.radio-btn input[type="radio"]:checked + label {
+  border-color: blueviolet;
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  color: white;
+  font-weight: bold;
+}
+
+.radio-btn label {
+  border: 2px solid blueviolet;
+}
+
+.radio-btn label::after {
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
+
+/*---------------------------*/
+
 .wrapper{
   display: flex;
   width: 100%;
