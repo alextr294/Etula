@@ -2,10 +2,10 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Student::class, function (Faker $faker) {
+$factory->define(\Étula\Student::class, function (Faker $faker) {
     return [
         'user_id' => function () {
-            return factory(App\User::class)->create(["type" => "student"])->id;
+            return factory(Étula\User::class)->create(["type" => "student"])->id;
         }
     ];
 });

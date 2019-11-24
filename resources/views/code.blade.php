@@ -1,15 +1,20 @@
 @extends('layouts.app')
-<meta http-equiv="refresh" content="10; url=http://localhost/scanetu/public/delete/{{$token->lesson_id}}">
+<meta http-equiv="refresh" content="10; url={{action('TokenController@delete',$token->lesson_id)}}">
 @section('content')
-<div class="container">
-    <br>
-    <br>
-    <h1 id="decompte">Il reste 10 seconde(s)</h1>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1>Code : {{$token->token}}</h1>
+    <div class="container">
+        <div class="row justify-content-md-center mt-5">
+            <div class="col-md-8">
+                <h1 id="decompte">Il reste 10 seconde(s)</h1>
+                <br>
+                <div class="col-md-12">
+                    <div id="code-validation">
+                        <h2>Code :</h2>
+                        <p>{{$token->token}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -24,6 +29,8 @@
             document.getElementById('decompte').innerText = 'Terminé !';
             document.getElementById('cache').style.display = 'block';
             window.clearInterval(timer);
+
+            // ajax: send delete method to server
         }
 
         sec--;

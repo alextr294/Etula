@@ -49,6 +49,7 @@ before_script:
   # Run database seed
   - php artisan db:seed
   - mv composer.phar /usr/local/bin/composer;
+  # CodeSniffer (not used yet)
   - composer global require "squizlabs/php_codesniffer=*"
   - /root/.composer/vendor/bin/phpcs  --standard=Zend ./app
   - /root/.composer/vendor/bin/phpcs  --standard=Zend ./routes
@@ -58,4 +59,6 @@ test:
   script:
     # run laravel tests
     - php vendor/bin/phpunit --colors=never
+    - php artisan serve
+    - php artisan dusk
    

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Étula\Http\Controllers;
 
-use App\Group;
-use App\TeachingUnit;
+use Étula\Group;
+use Étula\TeachingUnit;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -32,13 +32,19 @@ class TeachingUnitController extends Controller
         if ($courses == null) {
             return new JsonResponse(array('message'=>'404 not found'),404);
         } else {
-            // create custom $courseWithMane
+            // create custom $courseWithName
             $coursesWithGroup = [];
             foreach ($courses as $course) {
+                $group = Group::find($course->group_id);
+                if ($group == null) {
+                    $group_name = null;
+                } else {
+                    $group_name = $group->name;
+                }
                 array_push($coursesWithGroup,array(
                     'id'=>$course->id,
                     'name'=>$course->name,
-                    'group_name'=>Group::find($course->group_id)->name
+                    'group_name'=>$group_name
                 ));
             }
             return view('course.course_manager',array('courses'=>$coursesWithGroup));
@@ -79,11 +85,14 @@ class TeachingUnitController extends Controller
      */
     public function store(Request $request) {
         // TODO: Admin Policy
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'group_id' => 'required|integer'
         ]);
-        TeachingUnit::create($validatedData);
+        $group_id = $request->input('group_id') ?? null;
+        TeachingUnit::create(array(
+            'name'=>$request->input('name'),
+            'group_id'=>$group_id
+        ));
         return redirect()->route('courses.index');
     }
 

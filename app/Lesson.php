@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Étula;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,7 +31,7 @@ class Lesson extends Model
      * @return BelongsTo
      */
     public function unit() {
-        return $this->belongsTo('App\TeachingUnit');
+        return $this->belongsTo('Étula\TeachingUnit');
     }
 
     /**
@@ -40,7 +40,7 @@ class Lesson extends Model
      * @return BelongsTo
      */
     public function owner() {
-        return $this->belongsTo('App\Teacher');
+        return $this->belongsTo('Étula\Teacher', 'teacher_id', 'user_id');
     }
 
     /**
@@ -49,7 +49,7 @@ class Lesson extends Model
      * @return HasOne
      */
     public function token() {
-        return $this->hasOne('App\LessonToken');
+        return $this->hasOne('Étula\LessonToken');
     }
 
     /**
@@ -59,7 +59,7 @@ class Lesson extends Model
      */
     public function presentStudents()
     {
-        return $this->belongsToMany('App\Student', 'lesson_student', 'lesson_id', 'student_id');
+        return $this->belongsToMany('Étula\Student', 'lesson_student', 'lesson_id', 'student_id');
     }
 
     /**
@@ -67,6 +67,6 @@ class Lesson extends Model
      */
     public function teachers()
     {
-        return $this->belongsToMany('App\Teacher', 'lesson_teacher', 'lesson_id', 'teacher_id');
+        return $this->belongsToMany('Étula\Teacher', 'lesson_teacher', 'lesson_id', 'teacher_id');
     }
 }
