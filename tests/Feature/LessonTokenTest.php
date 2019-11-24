@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Lesson;
 use App\LessonToken;
 use Illuminate\Support\Facades\DB;
-use Tests\TestCase;
+use tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LessonTokenTest extends TestCase

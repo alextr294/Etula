@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Group;
-use App\Lesson;
-use App\LessonToken;
-use App\TeachingUnit;
+use Étula\Group;
+use Étula\Lesson;
+use Étula\LessonToken;
+use Étula\TeachingUnit;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;

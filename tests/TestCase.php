@@ -2,11 +2,8 @@
 
 namespace Tests;
 
-use App\Group;
-use App\LessonToken;
-use App\TeachingUnit;
-use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Étula\User;
 
 abstract class TestCase extends BaseTestCase
 {
