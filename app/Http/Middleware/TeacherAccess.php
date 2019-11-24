@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Étula\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\JsonResponse;
@@ -21,7 +21,7 @@ class TeacherAccess
         if (Auth::guard($guard)->check() && Auth::user()->type == 'teacher') {
             return $next($request);
         } else {
-            return new JsonResponse(array('success' => false, 'message' => 'teacher access only'), 401);
+            abort(403,'Unauthorized: teacher access only');
         }
     }
 }
