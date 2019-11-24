@@ -217,4 +217,68 @@ class LessonController extends Controller
         return redirect()->route('lessons.show',$lesson_id);
     }
 
+    /**
+    * Display the specified resource.
+    *
+    * @param  \App\Lesson  $lesson
+    * @return \Illuminate\Http\Response
+    */
+    public function show(Lesson $lesson){
+        $presentStudents_id = $lesson->presentStudents;
+        $studentsPresents = [];
+
+        foreach ($presentStudents_id as $presentStudent_id) {
+            $studentsPresents [] = $presentStudent_id->user_id;
+        }
+
+        $students_id = $lesson->unit->group->students;
+        $students = array();
+
+        foreach ($students_id as $student_id) {
+            $present = false;
+            $id = $student_id->user_id;
+            if (in_array($id, $studentsPresents)) {
+                $present = true;
+            }
+            $students [] = array(User::where('id', $id)->get(), $present);
+        }
+
+        //var_dump($students);
+
+        return view('lesson_details',compact("lesson","students"));
+    }
+
+    /**
+    * Show the form for editing the specified resource.
+    *
+    * @param  \App\Lesson  $lesson
+    * @return \Illuminate\Http\Response
+    */
+    public function edit(Lesson $lesson)
+    {
+        // TODO: Teacher Policy
+    }
+
+    /**
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Lesson  $lesson
+    * @return \Illuminate\Http\Response
+    */
+    public function update(Request $request, Lesson $lesson)
+    {
+        // TODO: Teacher Policy
+    }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Lesson  $lesson
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(Lesson $lesson)
+    {
+        // TODO: Teacher Policy
+    }
 }
