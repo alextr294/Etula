@@ -7,8 +7,6 @@ use Étula\User;
 use Étula\TeachingUnit;
 use Étula\Teacher;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Étula\LessonTeacher;
 
 class LessonController extends Controller
 {
@@ -137,6 +135,39 @@ class LessonController extends Controller
         }
 
         return view('lesson_student',compact('PresentLessonsId','AllLessons'));
+    }
+
+    /**
+     * Admin: show student attended lessons.
+     * @param $idStudent
+     * @return mixed
+     */
+    public function showLessonsStudentAdmin($idStudent) {
+        // get student from url parameter
+        $student = User::find($idStudent);
+        if ($student == null) {
+            abort(404,'student not found');
+        } else {
+            $userStudent = $student;
+            $student = $student->studentAccess;
+        }
+        $AllLessons = Lesson::all();
+        $PresentLessons = $student->presentLessons;
+
+        $c=0;
+        foreach($AllLessons as $lesson){
+            if(strtotime($lesson->begin_at)<strtotime("last Monday") or strtotime($lesson->begin_at)>strtotime("next Sunday")){
+                unset($AllLessons[$c]);
+            }
+            $c++;
+        }
+
+        $PresentLessonsId = [];
+        foreach ($PresentLessons as $lesson) {
+            $PresentLessonsId [] = $lesson->id;
+        }
+
+        return view('lesson_student',compact('PresentLessonsId','AllLessons','userStudent'));
     }
 
     /**

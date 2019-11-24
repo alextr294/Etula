@@ -21,7 +21,7 @@ class AdminAccess
         if (Auth::guard($guard)->check() && Auth::user()->type == "admin") {
             return $next($request);
         } else {
-            return new JsonResponse(array('success' => false, 'message' => 'admin access only'), 401);
+            abort(403,'Unauthorized: admin access only');
         }
     }
 }

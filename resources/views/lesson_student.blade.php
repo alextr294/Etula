@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row justify-content-md-center mt-5">
             <div class="col-md-8">
-                <h1>Liste des cours</h1>
+
+                <h1>Liste des cours @isset($userStudent)<u>{{$userStudent->name}}</u>@endisset</h1>
                 <br>
 
                 <div class="tbl-header teacher-header">
@@ -36,7 +37,11 @@
                     </table>
                 </div>
                 <br>
-                <a class="btn btn-primary" href="{{route('StudentPdf')}}">Générer un PDF</a>
+                @if(Auth::user()->type == 'admin')
+                    <a class="btn btn-primary" href="{{route('student_present_lesson_pdf',array('idStudent'=>$userStudent->id))}}">Générer un PDF</a>
+                @else
+                    <a class="btn btn-primary" href="{{route('StudentPdf')}}">Générer un PDF</a>
+                @endif
             </div>
         </div>
     </div>
