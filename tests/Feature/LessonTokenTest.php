@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Lesson;
-use App\LessonToken;
 use Illuminate\Support\Facades\DB;
 use tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Étula\Lesson;
+use Étula\LessonToken;
 
 class LessonTokenTest extends TestCase
 {
