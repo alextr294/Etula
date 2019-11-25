@@ -112,3 +112,7 @@ npm run dev
 Cela va regénérer les fichiers css et js accessibles aux utilisateurs (public) à partir du dossier de développement frontend (resources).
 
 Et voilà, le tour est joué ! Vous devriez avoir accès au projet. Maintenant, lisez bien les commentaires dans le code ! Ils vous aideront à mieux comprendre.
+
+### Lien vers la VM
+
+[VM de démonstration](http://192.168.74.219/login)
