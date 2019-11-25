@@ -33,13 +33,15 @@ class LessonController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function create()
     {
-        // TODO: Teacher Policy
+        $this->authorize('create');
+
         $units = TeachingUnit::all();
         $types = ['CM', 'TD', 'TP'];
         return view('lesson_create', compact('units', 'types'));
@@ -50,11 +52,13 @@ class LessonController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Exception
      */
     public function store(Request $request)
     {
-        // TODO: Teacher Policy
+        $this->authorize('create');
+
         $request->validate([
             'name' => 'required|string|max:255',
             'type' =>'required|in:CM,TD,TP',
@@ -80,12 +84,15 @@ class LessonController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \Étula\Lesson  $lesson
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param \Étula\Lesson $lesson
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function show(Lesson $lesson){
+        $this->authorize('view', $lesson);
+
         $presentStudents_id = $lesson->presentStudents;
         $teachers_id = Teacher::all(); //var_dump($teachers);die();
         $teachers = array();
@@ -115,7 +122,14 @@ class LessonController extends Controller
         return view('lesson_details',compact("lesson","students","teachers"));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function showLessonsStudent(Request $request){
+        $this->authorize('showStudentPlanning');
+
         $student = $request->user()->studentAccess;
         $AllLessons = Lesson::all();
         $PresentLessons = $student->presentLessons;
@@ -140,8 +154,11 @@ class LessonController extends Controller
      * Admin: show student attended lessons.
      * @param $idStudent
      * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function showLessonsStudentAdmin($idStudent) {
+        $this->authorize('showAdminPlanning');
+
         // get student from url parameter
         $student = User::find($idStudent);
         if ($student == null) {
@@ -170,44 +187,55 @@ class LessonController extends Controller
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \Étula\Lesson  $lesson
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param \Étula\Lesson $lesson
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function edit(Lesson $lesson)
     {
-        // TODO: Teacher Policy
+        $this->authorize('update', $lesson);
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \Étula\Lesson  $lesson
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Étula\Lesson $lesson
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function update(Request $request, Lesson $lesson)
     {
-        // TODO: Teacher Policy
+        $this->authorize('update', $lesson);
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \Étula\Lesson  $lesson
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param \Étula\Lesson $lesson
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function destroy(Lesson $lesson)
     {
-        // TODO: Teacher Policy
+        $this->authorize('delete', $lesson);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function teacher_add(Request $request){
         $list_name = $request->all();
         array_shift($list_name);
         $lesson_id = array_pop($list_name);
         $lesson = Lesson::find($lesson_id);
+
+        $this->authorize('update', $lesson);
+
         foreach($list_name as $key=>$valeur){
             if(!$lesson->teachers->contains($valeur)) {
                 $lesson->teachers()->attach($valeur);

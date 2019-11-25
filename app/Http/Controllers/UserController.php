@@ -18,7 +18,7 @@ class UserController extends Controller
         // TODO: Determine if teachers and students need to see all Users, if they do we need policies.
         // middleware = for all class, policy = can differ for some actions
         // TODO: add missing actions (see LessonController)
-        $this->middleware('admin');
+        $this->middleware(['auth', 'admin']);
     }
 
     /**

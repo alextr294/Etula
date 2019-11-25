@@ -13,7 +13,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Étula\Model' => 'Étula\Policies\ModelPolicy',
+        'Étula\Lesson' => 'Étula\Policies\LessonPolicy',
+        'Étula\LessonToken' => 'Étula\Policies\TokenPolicy',
     ];
 
     /**

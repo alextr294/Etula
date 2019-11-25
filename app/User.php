@@ -54,6 +54,22 @@ class User extends Authenticatable
      *
      */
     public function isAdmin() {
-        return ($this->type=="admin");
+        return $this->type == "admin";
+    }
+
+    /**
+     * Check if user is admin
+     *
+     */
+    public function isStudent() {
+        return $this->type == "student";
+    }
+
+    /**
+     * Check if user is admin
+     *
+     */
+    public function isTeacher() {
+        return $this->type == "teacher";
     }
 }

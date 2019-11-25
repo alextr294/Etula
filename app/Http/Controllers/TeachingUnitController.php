@@ -19,7 +19,7 @@ class TeachingUnitController extends Controller
         // TODO: Determine if teachers and students need to see all TeachingUnits, if they do we need policies.
         // middleware = for all class, policy = can differ for some actions
         // TODO: add missing actions (see LessonController)
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
     }
 
     /**

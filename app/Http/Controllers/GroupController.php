@@ -20,7 +20,7 @@ class GroupController extends Controller
     {
         // TODO: index() Determine student can see groups in which they participate
         // middleware = for all class, policy = can differ for some actions
-        $this->middleware('admin');
+        $this->middleware(['auth', 'admin']);
     }
 
     /**
