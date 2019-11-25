@@ -58,15 +58,14 @@ class LessonController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'type' =>'required|in:CM,TD,TP',
-            'begin_at' =>'required|date|after_or_equal:today', // always in format: yyyy-mm-dd
+            'date' =>'required|date|after_or_equal:today', // always in format: yyyy-mm-dd
             'begin_at_time' => 'required|date_format:G:i', // format: hh:mm 24h
-            'end_at' =>'required|date|after_or_equal:today|after_or_equal:begin_at', // always in format: yyyy-mm-dd
             'end_at_time' => 'required|date_format:G:i|after:begin_at_time', // format: hh:mm 24h
             'unit' =>'required|exists:teaching_units,id',
         ]);
         // create begin_at & end_at attributes
-        $begin_at = new \DateTime($request->begin_at.' '.$request->begin_at_time);
-        $end_at = new \DateTime($request->end_at.' '.$request->end_at_time);
+        $begin_at = new \DateTime($request->date.' '.$request->begin_at_time);
+        $end_at = new \DateTime($request->date.' '.$request->end_at_time);
         // add new in DB
         Lesson::create([
             'name' => $request->name,
