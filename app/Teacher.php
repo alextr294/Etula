@@ -33,7 +33,7 @@ class Teacher extends Model
      */
     public function ownedLessons()
     {
-        return $this->hasMany('Étula\Lesson');
+        return $this->hasMany('Étula\Lesson', 'teacher_id', 'user_id');
     }
 
     /**

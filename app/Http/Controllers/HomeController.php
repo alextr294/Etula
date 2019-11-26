@@ -35,7 +35,8 @@ class HomeController extends Controller
                 return view('student', compact(["lessons", "token"]));
                 break;
             case "teacher":
-                $lessons = Lesson::where('teacher_id', Auth::user()->id)->get();
+                $teacher = Auth::user()->teacherAccess;
+                $lessons = $teacher->ownedLessons->merge($teacher->supervisedLessons);
                 return view('teacher', compact("lessons"));
                 break;
             case "admin":

@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 class LessonController extends Controller
 {
     /**
-    * Create new Controller instance.
-    *
-    * @return void
-    */
+     * Create new Controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         // TODO: Determine if admins and students need to see all Lessons, if they do we need policies.
@@ -23,24 +23,24 @@ class LessonController extends Controller
     }
 
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create(Request $request)
     {
         // TODO: Teacher Policy
-        if($request->user()->type != "teacher") {
+        if ($request->user()->type != "teacher") {
             abort(403, "Unauthorized");
         }
         $units = TeachingUnit::all();
@@ -60,15 +60,15 @@ class LessonController extends Controller
         // TODO: Teacher Policy
         $request->validate([
             'name' => 'required|string|max:255',
-            'type' =>'required|in:CM,TD,TP',
-            'date' =>'required|date|after_or_equal:today', // always in format: yyyy-mm-dd
+            'type' => 'required|in:CM,TD,TP',
+            'date' => 'required|date|after_or_equal:today', // always in format: yyyy-mm-dd
             'begin_at_time' => 'required|date_format:G:i', // format: hh:mm 24h
             'end_at_time' => 'required|date_format:G:i|after:begin_at_time', // format: hh:mm 24h
-            'unit' =>'required|exists:teaching_units,id',
+            'unit' => 'required|exists:teaching_units,id',
         ]);
         // create begin_at & end_at attributes
-        $begin_at = new \DateTime($request->date.' '.$request->begin_at_time);
-        $end_at = new \DateTime($request->date.' '.$request->end_at_time);
+        $begin_at = new \DateTime($request->date . ' ' . $request->begin_at_time);
+        $end_at = new \DateTime($request->date . ' ' . $request->end_at_time);
         // add new in DB
         Lesson::create([
             'name' => $request->name,
@@ -83,22 +83,35 @@ class LessonController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \Étula\Lesson  $lesson
-    * @return \Illuminate\Http\Response
-    */
-    public function show(Lesson $lesson){
+     * Display the specified resource.
+     *
+     * @param \Étula\Lesson $lesson
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Lesson $lesson)
+    {
         $presentStudents_id = $lesson->presentStudents;
+        $presentTeachers_id = $lesson->teachers;
         $teachers_id = Teacher::all(); //var_dump($teachers);die();
-        $teachers = array();
-        foreach($teachers_id as $t) {
-            array_push($teachers,User::find($t->user_id));
-        }
-        $studentsPresents = [];
 
+        $studentsTeachers = [];
+        foreach ($presentTeachers_id as $presentTeacher_id) {
+            $studentsTeachers[] = $presentTeacher_id->user_id;
+        }
+
+        $teachers = array();
+        foreach ($teachers_id as $t) {
+            $present = false;
+            $id = $t->user_id;
+            if (in_array($id, $studentsTeachers)) {
+                $present = true;
+            }
+            $teachers[] = array(User::find($id), $present);
+        }
+
+        $studentsPresents = [];
         foreach ($presentStudents_id as $presentStudent_id) {
-            $studentsPresents [] = $presentStudent_id->user_id;
+            $studentsPresents[] = $presentStudent_id->user_id;
         }
 
         $students_id = $lesson->unit->group->students;
@@ -110,22 +123,23 @@ class LessonController extends Controller
             if (in_array($id, $studentsPresents)) {
                 $present = true;
             }
-            $students [] = array(User::where('id', $id)->get(), $present);
+            $students[] = array(User::find($id), $present);
         }
 
         //var_dump($students);
 
-        return view('lesson_details',compact("lesson","students","teachers"));
+        return view('lesson_details', compact("lesson", "students", "teachers"));
     }
 
-    public function showLessonsStudent(Request $request){
+    public function showLessonsStudent(Request $request)
+    {
         $student = $request->user()->studentAccess;
         $AllLessons = Lesson::all();
         $PresentLessons = $student->presentLessons;
 
-        $c=0;
-        foreach($AllLessons as $lesson){
-            if(strtotime($lesson->begin_at)<strtotime("last Monday") or strtotime($lesson->begin_at)>strtotime("next Sunday")){
+        $c = 0;
+        foreach ($AllLessons as $lesson) {
+            if (strtotime($lesson->begin_at) < strtotime("last Monday") or strtotime($lesson->begin_at) > strtotime("next Sunday")) {
                 unset($AllLessons[$c]);
             }
             $c++;
@@ -136,7 +150,7 @@ class LessonController extends Controller
             $PresentLessonsId [] = $lesson->id;
         }
 
-        return view('lesson_student',compact('PresentLessonsId','AllLessons'));
+        return view('lesson_student', compact('PresentLessonsId', 'AllLessons'));
     }
 
     /**
@@ -144,11 +158,12 @@ class LessonController extends Controller
      * @param $idStudent
      * @return mixed
      */
-    public function showLessonsStudentAdmin($idStudent) {
+    public function showLessonsStudentAdmin($idStudent)
+    {
         // get student from url parameter
         $student = User::find($idStudent);
         if ($student == null) {
-            abort(404,'student not found');
+            abort(404, 'student not found');
         } else {
             $userStudent = $student;
             $student = $student->studentAccess;
@@ -156,9 +171,9 @@ class LessonController extends Controller
         $AllLessons = Lesson::all();
         $PresentLessons = $student->presentLessons;
 
-        $c=0;
-        foreach($AllLessons as $lesson){
-            if(strtotime($lesson->begin_at)<strtotime("last Monday") or strtotime($lesson->begin_at)>strtotime("next Sunday")){
+        $c = 0;
+        foreach ($AllLessons as $lesson) {
+            if (strtotime($lesson->begin_at) < strtotime("last Monday") or strtotime($lesson->begin_at) > strtotime("next Sunday")) {
                 unset($AllLessons[$c]);
             }
             $c++;
@@ -169,44 +184,45 @@ class LessonController extends Controller
             $PresentLessonsId [] = $lesson->id;
         }
 
-        return view('lesson_student',compact('PresentLessonsId','AllLessons','userStudent'));
+        return view('lesson_student', compact('PresentLessonsId', 'AllLessons', 'userStudent'));
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \Étula\Lesson  $lesson
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param \Étula\Lesson $lesson
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Lesson $lesson)
     {
         // TODO: Teacher Policy
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \Étula\Lesson  $lesson
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Étula\Lesson $lesson
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, Lesson $lesson)
     {
         // TODO: Teacher Policy
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  \Étula\Lesson  $lesson
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param \Étula\Lesson $lesson
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Lesson $lesson)
     {
         // TODO: Teacher Policy
     }
 
-    public function teacher_add(Request $request){
+    public function teacher_add(Request $request)
+    {
         $list_name = $request->all();
         array_shift($list_name);
         $lesson_id = array_pop($list_name);
@@ -220,11 +236,14 @@ class LessonController extends Controller
             return redirect()->route("home");
         }
 
-        foreach($list_name as $key=>$valeur){
-            if(!$lesson->teachers->contains($valeur)) {
-                $lesson->teachers()->attach($valeur);
-            }
+        $lesson->teachers()->detach();
+
+        foreach ($list_name as $key => $valeur) {
+            $lesson->teachers()->attach($valeur);
+
         }
-        return redirect()->route('lessons.show',$lesson_id);
+
+
+        return redirect()->route('lessons.show', $lesson_id);
     }
 }
