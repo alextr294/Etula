@@ -12,7 +12,7 @@
 
                         {{-- NAME INPUT --}}
                         <div class="form-group row">
-                            <label for="" class="col-md-4 col-form-label">Nom</label>
+                            <label for="" class="col-md-4 col-form-label">Nom*</label>
                             <div class="col-md-8">
                                 <input type="text"
                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -47,6 +47,9 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <p style="margin: auto;">* : champs obligatoires.</p>
+                        </div>
 
                         {{-- SUMMIT BUTTON --}}
                         <button type="submit" class="btn btn-primary float-right">Cr&eacute;er</button>

@@ -1,27 +1,24 @@
 .course-manager-content {
-    background-color: #b026e1;
     padding: 20px;
-    border: 2px solid blueviolet;
-    border-radius: 20px;
 }
 
 .course-manager-content>h1{
     font-size: 30px;
-    color: #EDEDED;
+    color: black;
     text-transform: uppercase;
     font-weight: 300;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .course-tbl{
     width:100%;
     table-layout: fixed;
-    color: #EDEDED;
+    color: black;
 }
 
 .cm-header{
-    background-color: rgba(255,255,255,0.3);
+    background-color: #c6c8ca;
     text-align: center;
     border-radius: 10px 10px 0px 0px;
 }
@@ -30,7 +27,7 @@
     height:300px;
     overflow-x:auto;
     margin-top: 0;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid #c6c8ca;
     border-radius: 0px 0px 10px 10px;
 }
 
@@ -40,7 +37,7 @@
 }
 
 .cm-course>thead>tr>th {
-    color: #EDEDED;
+    color: black;
 }
 
 .cm-course>th{

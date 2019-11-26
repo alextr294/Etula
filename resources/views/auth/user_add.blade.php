@@ -12,7 +12,7 @@
 
                         {{-- NAME INPUT --}}
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Nom</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">Nom*</label>
                             <div class="col-lg-6">
                                 <input type="text"
                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -29,7 +29,7 @@
 
                         {{-- EMAIL INPUT --}}
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">E-Mail*</label>
                             <div class="col-lg-6">
                                 <input type="email"
                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -46,7 +46,7 @@
 
                         {{-- PASSWORD INPUT --}}
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Mot de passe</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">Mot de passe*</label>
                             <div class="col-lg-6">
                                 <input type="password"
                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
@@ -62,7 +62,7 @@
 
                         {{-- CONFIRM PASSWORD --}}
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Retapez le mot de passe</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">Resaisissez le mot de passe*</label>
                             <div class="col-lg-6">
                                 <input type="password"
                                        class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
@@ -74,6 +74,10 @@
                                     </div>
                                 @endif
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <p style="margin: auto;">* : champs obligatoires.</p>
                         </div>
 
                         {{-- USER TYPE INPUT --}}

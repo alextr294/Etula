@@ -8,16 +8,16 @@
             <div class="col-md-8">
                 {{-- Group name --}}
                 <div class="card">
-                    <div class="card-header">
-                        <div class="row text-center">
-                            <h3 class="col-md-6">Add new Member to group <u>{{$group->name}}</u></h3>
-                            <a class="col-md-2 btn btn-outline-primary ml-4" href="{{action('GroupController@show',$group->id)}}">Back</a>
+                    <div class="card-header text-center">
+                        <h3>Ajouter un nouveau membre au groupe <u>{{$group->name}}</u></h3>
+                        <div class="row boutons-detail-groupe">
+                            <a class="col-md-2 btn btn-outline-primary ml-4" href="{{action('GroupController@show',$group->id)}}">Retour</a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
                             {{-- Student Search Input --}}
-                            <label for="student-name-input" class="col-md-4 col-form-label text-right">Student Name</label>
+                            <label for="student-name-input" class="col-md-4 col-form-label text-right">Nom de l'&Eacute;tudiant</label>
                             <div class="col-md-8">
                                 <input id="student-name-input"
                                        type="text"
@@ -37,8 +37,8 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Nom</th>
+                                    <th>E-mail</th>
                                     <th>...</th>
                                 </tr>
                             </thead>

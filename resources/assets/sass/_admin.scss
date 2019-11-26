@@ -1,3 +1,18 @@
+// Accueil
+.admin-accueil {
+  margin-top: 60px;
+  margin-left: 60px;
+}
+
+.admin-accueil ul li p span {
+  font-weight: bold;
+  color: black;
+}
+
+.admin-accueil ul li p {
+  font-size: 19px;
+}
+
 /* Form
 -----------------------------*/
 .radio-btn input[type="radio"]:checked + label::after {
@@ -21,7 +36,7 @@
 
 /*---------------------------*/
 
-.wrapper{
+.wrapper {
   display: flex;
   width: 100%;
   align-items: stretch;
@@ -125,4 +140,10 @@ ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
   background: #6d7fcc;
+}
+
+// Groupes
+.boutons-detail-groupe {
+  justify-content: space-around;
+  margin-top: 35px;
 }

@@ -5,14 +5,14 @@
         <div class="row justify-content-md-center mt-5">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Create New Student Group</div>
+                    <div class="card-header">Cr&eacute;er un nouveau groupe d'alternants</div>
                     <div class="card-body">
                         <form role="form" method="POST" action="{{action('GroupController@store')}}">
                             {!! csrf_field() !!}
 
                             {{-- NAME INPUT --}}
                             <div class="form-group row">
-                                <label for="" class="col-md-4 col-form-label">Name</label>
+                                <label for="" class="col-md-4 col-form-label">Nom*</label>
                                 <div class="col-md-8">
                                     <input type="text"
                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -27,8 +27,12 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <p style="margin: auto;">* : champs obligatoires.</p>
+                            </div>
+
                             {{-- SUMMIT BUTTON --}}
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Cr&eacute;er</button>
                         </form>
                     </div>
                 </div>
