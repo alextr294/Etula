@@ -8,8 +8,8 @@
                 <div class="course-manager-content">
                     <h1>Liste des utilisateurs</h1>
 
-                    <div class="tbl-header">
-                        <table class="course-tbl" cellpadding="0" cellspacing="0" border="0">
+                    <div class="tbl-header cm-header">
+                        <table class="course-tbl cm-course" cellpadding="0" cellspacing="0" border="0">
                             <thead>
                             <tr>
                                 <th>Nom</th>
@@ -20,7 +20,7 @@
                         </table>
                     </div>
 
-                    <div class="tbl-content">
+                    <div class="tbl-content cm-content">
                         <table class="course-tbl table table-striped" cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                             @foreach($allUsers as $usersByType)

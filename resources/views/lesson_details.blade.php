@@ -9,8 +9,8 @@
                 </div>
                 <br>
                 <div class="time-ue">
-                    <h3>Début : {{$lesson->begin_at}}</h3>
-                    <h3>Fin : {{$lesson->end_at}}</h3>
+                    <h3>Début : <span style="color: green;">{{$lesson->begin_at}}</span></h3>
+                    <h3>Fin : <span style="color: red;">{{$lesson->end_at}}</span></h3>
                 </div>
                 <br>
                 <h3>Responsable : {{$lesson->owner->user->name}}</h3>

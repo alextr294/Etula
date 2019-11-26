@@ -15,7 +15,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group row">
-                            <label for="email" class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
+                            <label for="email" class="col-lg-4 col-form-label text-lg-right">E-Mail*</label>
 
                             <div class="col-lg-6">
                                 <input
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-lg-4 col-form-label text-lg-right">Mot de passe</label>
+                            <label for="password" class="col-lg-4 col-form-label text-lg-right">Mot de passe*</label>
 
                             <div class="col-lg-6">
                                 <input
@@ -67,14 +67,18 @@
                         </div>
 
                         <div class="form-group row">
+                            <p style="margin: auto;">* : champs obligatoires.</p>
+                        </div>
+
+                        <div class="form-group row">
                             <div class="col-lg-8 offset-lg-4">
                                 <button type="submit" class="btn btn-primary">
                                     Se connecter
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <!--<a class="btn btn-link" href="{{ route('password.request') }}">
                                     Mot de passe oublié ?
-                                </a>
+                                </a>-->
                             </div>
                         </div>
                     </form>

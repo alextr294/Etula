@@ -10,25 +10,25 @@
                 {{-- Group name --}}
                 <div class="card">
                     <div class="card-header text-center">
-                        <h3>Group <u>{{$group->name}}</u></h3>
-                        <div class="row d-inline-block">
-                            <a class="col-lg-4 mr-2 btn btn-outline-primary" href="{{route('groups.index')}}">Back to Manager</a>
-                            <a class="col-lg-4 ml-2 btn btn-primary" href="{{route('group_add_student_form',$group->id)}}">Add new Member</a>
+                        <h3>Groupe <u>{{$group->name}}</u></h3>
+                        <div class="row boutons-detail-groupe">
+                            <a class="col-lg-4 mr-2 btn btn-outline-primary" href="{{route('groups.index')}}">Retour au gestionnaire</a>
+                            <a class="col-lg-4 ml-2 btn btn-primary" href="{{route('group_add_student_form',$group->id)}}">Ajouter un nouveau membre</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-header">Members</div>
+                    <div class="card-header">Membres</div>
                     <div class="card-body">
                         <ul>
                             @foreach($members as $member)
                                 <li class="p-2">
                                     {{$member->name}}
-                                    <button class="btn btn-primary" onclick="window.location.href='{{action('UserController@show',$member->id)}}';">Info</button>
+                                    <button class="btn btn-primary" onclick="window.location.href='{{action('UserController@show',$member->id)}}';">Infos</button>
                                     <button class="btn btn-outline-danger"
                                             onclick="remove_action('{{action('GroupController@remove_student',array('idGroup'=>$group->id,'idStudent'=>$member->id))}}')"
-                                    >Delete</button>
+                                    >Supprimer</button>
                                 </li>
                             @endforeach
                         </ul>

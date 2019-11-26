@@ -11954,6 +11954,20 @@ a.text-dark:focus {
   }
 }
 
+.admin-accueil {
+  margin-top: 60px;
+  margin-left: 60px;
+}
+
+.admin-accueil ul li p span {
+  font-weight: bold;
+  color: black;
+}
+
+.admin-accueil ul li p {
+  font-size: 19px;
+}
+
 /* Form
 -----------------------------*/
 
@@ -12096,30 +12110,33 @@ ul ul a {
   background: #6d7fcc;
 }
 
+.boutons-detail-groupe {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 35px;
+}
+
 .course-manager-content {
-  background-color: #b026e1;
   padding: 20px;
-  border: 2px solid blueviolet;
-  border-radius: 20px;
 }
 
 .course-manager-content > h1 {
   font-size: 30px;
-  color: #EDEDED;
+  color: black;
   text-transform: uppercase;
   font-weight: 300;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .course-tbl {
   width: 100%;
   table-layout: fixed;
-  color: #EDEDED;
+  color: black;
 }
 
 .cm-header {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #c6c8ca;
   text-align: center;
   border-radius: 10px 10px 0px 0px;
 }
@@ -12128,7 +12145,7 @@ ul ul a {
   height: 300px;
   overflow-x: auto;
   margin-top: 0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #c6c8ca;
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -12138,7 +12155,7 @@ ul ul a {
 }
 
 .cm-course > thead > tr > th {
-  color: #EDEDED;
+  color: black;
 }
 
 .cm-course > th {

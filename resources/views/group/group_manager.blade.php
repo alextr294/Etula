@@ -9,8 +9,8 @@
                 {{-- Group name --}}
                 <div class="card">
                     <div class="card-header">
-                        <h3>Group Manager</h3>
-                        <button class="btn btn-primary" onclick="window.location.href='{{action('GroupController@create')}}'">Create new</button>
+                        <h3>Gestionnaire de groupes</h3>
+                        <button class="btn btn-primary" onclick="window.location.href='{{action('GroupController@create')}}'">Cr&eacute;er un nouveau groupe</button>
                     </div>
                     <div class="card-body">
                         @if(count($groups))
@@ -18,13 +18,13 @@
                                 @foreach($groups as $group)
                                     <li class="p-2">
                                         {{$group->name}}
-                                        <button class="btn btn-outline-primary" onclick="showGroup()">Info</button>
-                                        <button class="btn btn-outline-danger" onclick="deleteGroup('{{action('GroupController@destroy',$group->id)}}',{{$group->id}})">Delete</button>
+                                        <button class="btn btn-outline-primary" onclick="showGroup()">Infos</button>
+                                        <button class="btn btn-outline-danger" onclick="deleteGroup('{{action('GroupController@destroy',$group->id)}}',{{$group->id}})">Supprimer</button>
                                     </li>
                                 @endforeach
                             </ul>
                         @else
-                            <p class="p-2 text-dark">Database does not have any group</p>
+                            <p class="p-2 text-dark">La base de données ne contient aucun groupe.</p>
                         @endif
                     </div>
                 </div>
