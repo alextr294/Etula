@@ -3,6 +3,9 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Étula\Group;
+use Étula\LessonToken;
+use Étula\TeachingUnit;
 use Étula\User;
 
 abstract class TestCase extends BaseTestCase
@@ -31,6 +34,7 @@ abstract class TestCase extends BaseTestCase
                 $user->teacherAccess()->create(['user_id' => $user->id]);
                 break;
         }
+
         return $user;
     }
 
@@ -44,8 +48,9 @@ abstract class TestCase extends BaseTestCase
             "_token" => csrf_token(),
             "name" => "name",
             "type" => "CM",
-            "begin_at" => "2019-10-20 10:00:00",
-            "end_at" => "2019-10-20 12:00:00",
+            "date" => date("Y-m-d"),
+            "begin_at_time" => "10:00",
+            "end_at_time" => "12:00",
             "unit" => $us->id
         ];
 

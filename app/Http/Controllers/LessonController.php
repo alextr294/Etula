@@ -19,7 +19,7 @@ class LessonController extends Controller
     {
         // TODO: Determine if admins and students need to see all Lessons, if they do we need policies.
         // middleware = for all class, policy = can differ for some actions
-        $this->middleware('auth');
+        $this->middleware("auth");
     }
 
     /**
@@ -211,6 +211,15 @@ class LessonController extends Controller
         array_shift($list_name);
         $lesson_id = array_pop($list_name);
         $lesson = Lesson::find($lesson_id);
+
+        if (!isset($lesson)) {
+            return redirect()->route("home");
+        }
+
+        if ($request->user()->id != $lesson->teacher_id) {
+            return redirect()->route("home");
+        }
+
         foreach($list_name as $key=>$valeur){
             if(!$lesson->teachers->contains($valeur)) {
                 $lesson->teachers()->attach($valeur);

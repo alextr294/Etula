@@ -2,7 +2,6 @@
 
 namespace Étula\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Étula\LessonToken;
 use Étula\Lesson;
@@ -10,11 +9,22 @@ use Étula\LessonTeacher;
 
 class TokenController extends Controller
 {
-    public function create(Request $request, $id){
-        if($request->user()->type != "teacher") {
-            abort(403, "Unauthorized");
+
+    public function create(Request $request, $id) {
+        $lesson = Lesson::find($id);
+        if (!isset($lesson)) {
+            return redirect()->route("home");
         }
-        
+
+        if($request->user()->type != "teacher") {
+            abort(403, "Forbidden");
+        }
+
+        // TODO a faire aussi pour les encadrants, pas le time
+        if ($lesson->teacher_id != $request->user()->id) {
+            return redirect()->route("home");
+        }
+
         $token = new LessonToken;
         $token->lesson_id = $id;
 
@@ -68,8 +78,10 @@ class TokenController extends Controller
 
     public function acceptByTeacher(Request $request){
         $lesson = Lesson::where('id', $request->input('lesson_id'))->first();
+
         $lesson->presentStudents()->detach();
-        foreach($_POST as $key=>$valeur){
+
+        foreach($_POST as $key => $valeur){
             if( strstr($key, "student")){
                 $student_id = preg_replace('~\D~', '', $key);
                 if(!$lesson->presentStudents->contains($student_id)) {

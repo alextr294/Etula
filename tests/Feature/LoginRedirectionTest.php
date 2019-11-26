@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class LoginRedirectionTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -16,23 +17,21 @@ class LoginRedirectionTest extends TestCase
      */
     public function test_student_redirect_to_student_view()
     {
-        $user = factory(User::class)->create(["type" => "student"]);
+        $this->actingAs($this->createUser("student"));
 
-        $this->followingRedirects()->actingAs($user)->get("/login")->assertViewIs("student");
+        $this->get("/login")->assertStatus(302);
 
     }
 
     public function test_teacher_redirect_to_teacher_view()
     {
-        $user = factory(User::class)->create(["type" => "teacher"]);
-
-        $this->followingRedirects()->actingAs($user)->get("/login")->assertViewIs("teacher");
+        $this->actingAs($user = $this->createUser("teacher"));
+        $this->get("/login")->assertStatus(302);
     }
 
     public function test_admin_redirect_to_admin_view()
     {
-        $user = factory(User::class)->create(["type" => "admin"]);
-
-        $this->followingRedirects()->actingAs($user)->get("/login")->assertViewIs("admin");
+        $this->actingAs($user = $this->createUser("admin"));
+        $this->get("/login")->assertStatus(302);
     }
 }

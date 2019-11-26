@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="16" assertions="12" errors="8" failures="2" skipped="0" time="6.112247">
-    <testsuite name="Feature" tests="16" assertions="12" errors="8" failures="2" skipped="0" time="6.112247">
-      <testsuite name="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" tests="11" assertions="8" errors="7" failures="2" skipped="0" time="5.090430">
-        <testcase name="test_create_lesson" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="35" assertions="3" time="3.401107"/>
-        <testcase name="test_create_lesson_with_bad_date" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="45" assertions="0" time="0.247585">
-          <error type="Illuminate\Database\QueryException">Tests\Feature\LessonAndTokenTest::test_create_lesson_with_bad_date
-Illuminate\Database\QueryException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: 'delamerde' for column 'begin_at' at row 1 (SQL: insert into `lessons` (`name`, `type`, `begin_at`, `end_at`, `unit_id`, `teacher_id`) values (name, CM, delamerde, encoredelamerde, 2, 2))
+  <testsuite name="/media/matheo/Data/master1/multimif/scanetu/tests" tests="20" assertions="29" errors="1" failures="3" skipped="0" time="11.421718">
+    <testsuite name="Tests\Browser\ExampleTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Browser/ExampleTest.php" tests="1" assertions="0" errors="1" failures="0" skipped="0" time="3.854493">
+      <testcase name="testBasicExample" class="Tests\Browser\ExampleTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Browser/ExampleTest.php" line="19" assertions="0" time="3.854493">
+        <error type="Error">Tests\Browser\ExampleTest::testBasicExample
+Error: Call to undefined function Facebook\WebDriver\Remote\curl_init()
 
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Connection.php:664
+/media/matheo/Data/master1/multimif/scanetu/vendor/facebook/webdriver/lib/Remote/HttpCommandExecutor.php:125
+/media/matheo/Data/master1/multimif/scanetu/vendor/facebook/webdriver/lib/Remote/RemoteWebDriver.php:83
+/media/matheo/Data/master1/multimif/scanetu/tests/DuskTestCase.php:39
+/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/dusk/src/Concerns/ProvidesBrowser.php:185
+/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Support/helpers.php:765
+/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/dusk/src/Concerns/ProvidesBrowser.php:186
+/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/dusk/src/Concerns/ProvidesBrowser.php:92
+/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/dusk/src/Concerns/ProvidesBrowser.php:64
+/media/matheo/Data/master1/multimif/scanetu/tests/Browser/ExampleTest.php:32
+</error>
+      </testcase>
+    </testsuite>
+    <testsuite name="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" tests="9" assertions="15" errors="0" failures="1" skipped="0" time="5.305455">
+      <testcase name="test_create_lesson" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="19" assertions="3" time="3.056775"/>
+      <testcase name="test_create_lesson_with_bad_date" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="30" assertions="1" time="0.231927"/>
+      <testcase name="test_token_is_not_present_in_LessonToken_when_lesson_created" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="44" assertions="2" time="0.271287"/>
+      <testcase name="test_token_is_present_in_LessonToken_when_Lesson_activated" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="54" assertions="3" time="0.334738"/>
+      <testcase name="test_add_coachs_to_an_existing_lesson" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="70" assertions="2" time="0.348768"/>
+      <testcase name="test_add_coachs_to_non_existing_lesson" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="92" assertions="1" time="0.216392"/>
+      <testcase name="test_teacher_add_coachs_to_a_lesson_that_he_doesnt_own" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="115" assertions="1" time="0.325792"/>
+      <testcase name="test_student_cant_create_lesson" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="147" assertions="1" time="0.274490">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\LessonAndTokenTest::test_student_cant_create_lesson
+Failed asserting that exception of type "Illuminate\Database\QueryException" matches expected exception "Symfony\Component\HttpKernel\Exception\HttpException". Message was: "SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`scanetu`.`lessons`, CONSTRAINT `lessons_teacher_id_foreign` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`user_id`) ON DELETE CASCADE) (SQL: insert into `lessons` (`name`, `type`, `begin_at`, `end_at`, `unit_id`, `teacher_id`) values (name, CM, 2019-11-26 10:00:00, 2019-11-26 12:00:00, 7, 15))" at
+/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Connection.php:458
+/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Connection.php:657
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Connection.php:624
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Connection.php:459
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Connection.php:411
@@ -23,7 +45,7 @@ Illuminate\Database\QueryException: SQLSTATE[22007]: Invalid datetime format: 12
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php:756
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1477
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php:1489
-/media/matheo/Data/master1/multimif/scanetu/app/Http/Controllers/LessonController.php:73
+/media/matheo/Data/master1/multimif/scanetu/app/Http/Controllers/LessonController.php:76
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
@@ -81,137 +103,38 @@ Illuminate\Database\QueryException: SQLSTATE[22007]: Invalid datetime format: 12
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:345
 /media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:195
-/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php:52
-</error>
-        </testcase>
-        <testcase name="test_token_is_not_present_in_LessonToken_when_lesson_created" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="57" assertions="2" time="0.223678"/>
-        <testcase name="test_token_is_present_in_LessonToken_when_Lesson_activated" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="66" assertions="1" time="0.270500">
-          <error type="Symfony\Component\HttpKernel\Exception\NotFoundHttpException">Tests\Feature\LessonAndTokenTest::test_token_is_present_in_LessonToken_when_Lesson_activated
-Symfony\Component\HttpKernel\Exception\NotFoundHttpException: POST http://localhost/token_create/3
+/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php:154
+.
 
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithExceptionHandling.php:107
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:326
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:120
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:345
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:195
-/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php:75
-</error>
-        </testcase>
-        <testcase name="test_add_coach_to_an_existing_lesson" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="81" assertions="0" time="0.116710">
-          <error type="PHPUnit\Framework\RiskyTestError">Risky Test
-</error>
-        </testcase>
-        <testcase name="test_add_coach_to_non_existing_lesson" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="85" assertions="0" time="0.113297">
-          <error type="PHPUnit\Framework\RiskyTestError">Risky Test
-</error>
-        </testcase>
-        <testcase name="test_student_cant_create_lesson" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="94" assertions="1" time="0.189235">
-          <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\LessonAndTokenTest::test_student_cant_create_lesson
-Expected status code 401 but received 200.
-Failed asserting that false is true.
-
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestResponse.php:78
-/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php:98
 </failure>
-        </testcase>
-        <testcase name="test_admin_cant_create_lesson" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="104" assertions="1" time="0.181576">
-          <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\LessonAndTokenTest::test_admin_cant_create_lesson
-Expected status code 401 but received 200.
-Failed asserting that false is true.
+      </testcase>
+      <testcase name="test_admin_cant_create_lesson" class="Tests\Feature\LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="157" assertions="1" time="0.245286"/>
+    </testsuite>
+    <testsuite name="Tests\Feature\LessonTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTokenTest.php" tests="5" assertions="9" errors="0" failures="2" skipped="0" time="1.370652">
+      <testcase name="test_create_token" class="Tests\Feature\LessonTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTokenTest.php" line="16" assertions="3" time="0.301636"/>
+      <testcase name="test_create_token_with_non_existing_lesson" class="Tests\Feature\LessonTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTokenTest.php" line="27" assertions="1" time="0.210882"/>
+      <testcase name="test_admin_cant_activate_lesson" class="Tests\Feature\LessonTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTokenTest.php" line="37" assertions="2" time="0.286751">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\LessonTokenTest::test_admin_cant_activate_lesson
+Failed asserting that exception of type "Symfony\Component\HttpKernel\Exception\HttpException" is thrown.
 
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestResponse.php:78
-/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php:107
 </failure>
-        </testcase>
-        <testcase name="test_admin_cant_activate_lesson" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="113" assertions="0" time="0.115950">
-          <error type="PHPUnit\Framework\RiskyTestError">Risky Test
-</error>
-        </testcase>
-        <testcase name="test_student_cant_activate_lesson" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="117" assertions="0" time="0.116916">
-          <error type="PHPUnit\Framework\RiskyTestError">Risky Test
-</error>
-        </testcase>
-        <testcase name="test_a_teacher_cant_activate_other_teachers_lesson_than_his" class="Tests\Feature\LessonAndTokenTest" classname="Tests.Feature.LessonAndTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTest.php" line="121" assertions="0" time="0.113876">
-          <error type="PHPUnit\Framework\RiskyTestError">Risky Test
-</error>
-        </testcase>
-      </testsuite>
-      <testsuite name="Tests\Feature\LoginRedirectionTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php" tests="3" assertions="2" errors="1" failures="0" skipped="0" time="0.677371">
-        <testcase name="test_student_redirect_to_student_view" class="Tests\Feature\LoginRedirectionTest" classname="Tests.Feature.LoginRedirectionTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php" line="18" assertions="0" time="0.202606">
-          <error type="ErrorException">Tests\Feature\LoginRedirectionTest::test_student_redirect_to_student_view
-ErrorException: Trying to get property 'presentLessons' of non-object
+      </testcase>
+      <testcase name="test_student_cant_activate_lesson" class="Tests\Feature\LessonTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTokenTest.php" line="53" assertions="2" time="0.287472">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\LessonTokenTest::test_student_cant_activate_lesson
+Failed asserting that exception of type "Symfony\Component\HttpKernel\Exception\HttpException" is thrown.
 
-/media/matheo/Data/master1/multimif/scanetu/app/Http/Controllers/HomeController.php:34
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php:41
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php:43
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php:68
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php:49
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:66
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Router.php:660
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Router.php:635
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Router.php:601
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Router.php:590
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:176
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
-/media/matheo/Data/master1/multimif/scanetu/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php:58
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/fideloper/proxy/src/TrustProxies.php:56
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php:30
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php:30
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php:46
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:345
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:168
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:442
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:349
-/media/matheo/Data/master1/multimif/scanetu/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:168
-/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php:22
-</error>
-        </testcase>
-        <testcase name="test_teacher_redirect_to_teacher_view" class="Tests\Feature\LoginRedirectionTest" classname="Tests.Feature.LoginRedirectionTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php" line="26" assertions="1" time="0.258842"/>
-        <testcase name="test_admin_redirect_to_admin_view" class="Tests\Feature\LoginRedirectionTest" classname="Tests.Feature.LoginRedirectionTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php" line="33" assertions="1" time="0.215923"/>
-      </testsuite>
-      <testsuite name="Tests\Feature\RegisterTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/RegisterTest.php" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.344446">
-        <testcase name="test_student_not_allowed_to_register" class="Tests\Feature\RegisterTest" classname="Tests.Feature.RegisterTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/RegisterTest.php" line="19" assertions="1" time="0.171560"/>
-        <testcase name="test_teacher_not_allowed_to_register" class="Tests\Feature\RegisterTest" classname="Tests.Feature.RegisterTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/RegisterTest.php" line="25" assertions="1" time="0.172886"/>
-      </testsuite>
+</failure>
+      </testcase>
+      <testcase name="test_a_teacher_cant_activate_other_teachers_lesson_than_his" class="Tests\Feature\LessonTokenTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LessonTokenTest.php" line="68" assertions="1" time="0.283911"/>
+    </testsuite>
+    <testsuite name="Tests\Feature\LoginRedirectionTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.544767">
+      <testcase name="test_student_redirect_to_student_view" class="Tests\Feature\LoginRedirectionTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php" line="18" assertions="1" time="0.185389"/>
+      <testcase name="test_teacher_redirect_to_teacher_view" class="Tests\Feature\LoginRedirectionTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php" line="26" assertions="1" time="0.181896"/>
+      <testcase name="test_admin_redirect_to_admin_view" class="Tests\Feature\LoginRedirectionTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/LoginRedirectionTest.php" line="32" assertions="1" time="0.177482"/>
+    </testsuite>
+    <testsuite name="Tests\Feature\RegisterTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/RegisterTest.php" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.346351">
+      <testcase name="test_student_not_allowed_to_register" class="Tests\Feature\RegisterTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/RegisterTest.php" line="18" assertions="1" time="0.166855"/>
+      <testcase name="test_teacher_not_allowed_to_register" class="Tests\Feature\RegisterTest" file="/media/matheo/Data/master1/multimif/scanetu/tests/Feature/RegisterTest.php" line="25" assertions="1" time="0.179496"/>
     </testsuite>
   </testsuite>
 </testsuites>
