@@ -37,9 +37,12 @@ class LessonController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function create()
+    public function create(Request $request)
     {
         // TODO: Teacher Policy
+        if($request->user()->type != "teacher") {
+            abort(403, "Unauthorized");
+        }
         $units = TeachingUnit::all();
         $types = ['CM', 'TD', 'TP'];
         return view('lesson_create', compact('units', 'types'));
