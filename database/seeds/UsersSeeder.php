@@ -35,8 +35,18 @@ class UsersSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'name' => 'Test Teacher',
-                'email' => 'testteacher@user.com',
+                'name' => 'Test Teacher1',
+                'email' => 'testteacher1@user.com',
+                'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', //secret
+                'type' => 'teacher',
+                'remember_token' => str_random(10),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5,
+                'name' => 'Test Teacher2',
+                'email' => 'testteacher2@user.com',
                 'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', //secret
                 'type' => 'teacher',
                 'remember_token' => str_random(10),
@@ -65,6 +75,9 @@ class UsersSeeder extends Seeder
         DB::table('teachers')->insert([
             [
                 'user_id' => 3
+            ],
+            [
+                'user_id' => 5
             ]
         ]);
         DB::table('admins')->insert([

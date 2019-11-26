@@ -45,10 +45,8 @@ before_script:
   - php artisan key:generate
   - php artisan config:cache
   # Run database migrations.
-  - cat .env
   - php artisan migrate
-  # Run database seed
-  - php artisan db:seed
+  - cat .env
   - mv composer.phar /usr/local/bin/composer;
   # CodeSniffer (not used yet)
   #- composer global require "squizlabs/php_codesniffer=*"
@@ -60,6 +58,8 @@ test:
   script:
     # run laravel tests
     - php vendor/bin/phpunit --colors=never
-    - php artisan serve
-    - php artisan dusk
+    # Run database seed
+    #- php artisan db:seed
+    #- php artisan serve&
+    #- php artisan dusk
    
