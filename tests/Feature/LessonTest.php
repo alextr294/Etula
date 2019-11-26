@@ -2,10 +2,11 @@
 
 namespace Tests\Feature;
 
-use Étula\Group;
+use http\Exception;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Étula\Lesson;
 use Étula\LessonToken;
-use Étula\TeachingUnit;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -31,9 +32,10 @@ class LessonAndTokenTest extends TestCase
         $this->actingAs($this->createUser("teacher"));
 
         $lesson = $this->getLesson();
-        $lesson['begin_at'] = "delamerde";
-        $lesson['end_at'] = "encoredelamerde";
+        $lesson['begin_at_time'] = "delamerde";
+        $lesson['end_at_time'] = "encoredelamerde";
 
+        $this->expectException(ValidationException::class);
         $this->post(url('lessons'), $lesson);
 
         $this->assertEquals(0, Lesson::count());
@@ -59,7 +61,7 @@ class LessonAndTokenTest extends TestCase
 
         $this->assertEquals(1, Lesson::count());
         $lesson = DB::table('lessons')->get()->first();
-        $this->post(url('token_create', ["id" => $lesson->id]), ['_token' => csrf_token()]);
+        $this->get(route('code', ["id" => $lesson->id]), ['_token' => csrf_token()]);
 
         $this->assertEquals(1, LessonToken::count());
         $this->assertEquals($lesson->id, LessonToken::get()->first()->lesson->id);
@@ -70,7 +72,7 @@ class LessonAndTokenTest extends TestCase
         // On cree d'abord un teacher qui va creer une lesson
         $this->actingAs($this->createUser("teacher"));
         $this->post(url('lessons'), $this->getLesson());
-        $lesson = Lesson::find(1);
+        $lesson = Lesson::all()->first();
 
         // On ajoute ensuite des encadrants a cette lesson
         $e1 = $this->createUser("teacher");
@@ -99,13 +101,14 @@ class LessonAndTokenTest extends TestCase
 
         // ne doit PAS donner d'exception, on est cense gerer le cas ou la lesson
         // n'existe pas
-        // TODO l'erreur qu'on obtient pour l'instant arrive car la lesson correspondant a l'id 1 n'existe pas
         $this->post(route('teacher_add'), [
             "_token" => csrf_token(),
             "list" . $e1->id => $e1->id,
             "list" . $e2->id => $e2->id,
             "lesson_id" => 1
-        ])->assertStatus(404); // ou un truc dans le genre
+        ]);
+
+        $this->assertEquals(0, DB::table('lesson_teacher')->count());
 
     }
 
@@ -115,7 +118,7 @@ class LessonAndTokenTest extends TestCase
         // On cree d'abord une lesson avec un enseignant
         $this->actingAs($this->createUser("teacher"));
         $this->post(url('lessons'), $this->getLesson());
-        $lesson = Lesson::find(1);
+        $lesson = Lesson::all()->first();
 
         // Puis on se connecte en tant qu'un autre
         $this->actingAs($this->createUser("teacher"));
@@ -124,14 +127,14 @@ class LessonAndTokenTest extends TestCase
         $e1 = $this->createUser("teacher");
         $e2 = $this->createUser("teacher");
 
-        // l'enseignant ne possedant pas la lesson, il ne doit pas avoir l'autorisation
-        // donc 403 FORBIDDEN
-        $this->post(route('teacher_add'), [
+        $toAdd = [
             "_token" => csrf_token(),
             "list" . $e1->id => $e1->id,
             "list" . $e2->id => $e2->id,
-            "lesson_id" => 1
-        ])->assertStatus(403);
+            "lesson_id" => $lesson->id
+        ];
+
+        $this->post(route('teacher_add'), $toAdd);
 
         $this->assertEquals(0, count($lesson->teachers));
     }
@@ -141,74 +144,23 @@ class LessonAndTokenTest extends TestCase
      *
      * @return void
      */
-    public function test_student_cant_create_lesson()
+    public function student_cant_create_lesson()
     {
         $this->actingAs($this->createUser("student"));
 
-        $this->get(url('lessons'))->assertStatus(401); // forbidden
-        $response = $this->post(url('lessons'), $this->getLesson());
+        $this->expectException(HttpException::class);
 
-        $response->assertStatus(401);
+        $this->get(url('lessons'))->getStatusCode();
+        $response = $this->post(url('lessons'), $this->getLesson());
     }
 
     public function test_admin_cant_create_lesson()
     {
+        $this->startSession();
         $this->actingAs($this->createUser("admin"));
 
-        $this->get(url('lessons'))->assertStatus(401);
-
+        $this->expectException(HttpException::class);
         $response = $this->post('lesson_create', $this->getLesson());
-        $response->assertStatus(401);
     }
-
-    public function test_admin_cant_activate_lesson()
-    {
-        $this->actingAs($this->createUser("teacher"));
-
-        $this->post(url('lessons'), $this->getLesson());
-        $this->startSession();
-
-        $this->actingAs($this->createUser("admin"));
-
-        $lesson = DB::table('lessons')->get()->first();
-        $this->post(url('token_create', ["id" => $lesson->id]), ['_token' => csrf_token()])->assertStatus(401);
-
-        $this->assertEquals(0, LessonToken::count());
-
-    }
-
-    public function test_student_cant_activate_lesson()
-    {
-        $this->actingAs($this->createUser("teacher"));
-
-        $this->post(url('lessons'), $this->getLesson());
-        $this->startSession();
-
-        $this->actingAs($this->createUser("student"));
-
-        $lesson = DB::table('lessons')->get()->first();
-        $this->post(url('token_create', ["id" => $lesson->id]), ['_token' => csrf_token()])->assertStatus(401);
-
-        $this->assertEquals(0, LessonToken::count());
-    }
-
-    public function test_a_teacher_cant_activate_other_teachers_lesson_than_his()
-    {
-        $user_good = $this->createUser("teacher");
-        $user_bad = $this->createUser("teacher");
-
-        $this->actingAs($user_good);
-
-        $this->post(url('lessons'), $this->getLesson());
-        $this->startSession();
-
-        $this->actingAs($user_bad);
-
-        $lesson = DB::table('lessons')->get()->first();
-        $this->post(url('token_create', ["id" => $lesson->id]), ['_token' => csrf_token()])->assertStatus(401);
-
-        $this->assertEquals(0, LessonToken::count());
-    }
-
 
 }

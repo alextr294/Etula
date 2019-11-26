@@ -11,7 +11,7 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
-                                <label for="name" class="col-md-4 control-label col-lg-4 col-form-label">Nom du cours</label>
+                                <label for="name" class="col-md-4 control-label col-lg-4 col-form-label">Nom du cours*</label>
                                 <div class="col-md-12">
                                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
                                     @if ($errors->has('name'))
@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }} row">
-                                <label for="type" class="col-md-4 control-label col-lg-4 col-form-label">Type de cours</label>
+                                <label for="type" class="col-md-4 control-label col-lg-4 col-form-label">Type de cours*</label>
                                 <div class="col-md-12">
                                     <select name="type" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}">
                                         @foreach($types as $type)
@@ -38,19 +38,24 @@
                                 </div>
                             </div>
 
-                            {{-- begin at input --}}
-                            <div class="form-group{{ $errors->has('begin_at') ? ' has-error' : '' }} row">
-                                <label for="begin_at" class="col-md-4 control-label col-lg-4 col-form-label">Début du cours</label>
+                            <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }} row">
                                 <div class="col-md-12">
                                     {{-- date --}}
-                                    Date : <input type="date" id="begin_at" class="form-control" name="begin_at" value="{{ old('begin_at') }}" required autofocus>
-                                    @if ($errors->has('begin_at'))
+                                    Date* : <input type="date" id="date" class="form-control" name="date" value="{{ old('date') }}" required autofocus>
+                                    @if ($errors->has('date'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('begin_at') }}</strong>
+                                            <strong>{{ $errors->first('date') }}</strong>
                                         </span>
                                     @endif
+                                </div>
+                            </div>
+
+                            {{-- begin at input --}}
+                            <div class="form-group{{ $errors->has('begin_at_time') ? ' has-error' : '' }} row">
+                                <label for="begin_at_time" class="col-md-4 control-label col-lg-4 col-form-label">Début du cours</label>
+                                <div class="col-md-12">
                                     {{-- time --}}
-                                    Heure : <input type="text" id="begin_at_time" class="form-control" name="begin_at_time" value="{{ old('begin_at_time') }}" required autofocus>
+                                    Heure* : <input type="text" id="begin_at_time" class="form-control" name="begin_at_time" value="{{ old('begin_at_time') }}" required autofocus>
                                     @if ($errors->has('begin_at_time'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('begin_at_time') }}</strong>
@@ -59,18 +64,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }} row">
-                                <label for="end_at" class="col-md-4 control-label col-lg-4 col-form-label">Fin du cours</label>
+                            <div class="form-group{{ $errors->has('end_at_time') ? ' has-error' : '' }} row">
+                                <label for="end_at_time" class="col-md-4 control-label col-lg-4 col-form-label">Fin du cours</label>
                                 <div class="col-md-12">
-                                    {{-- date --}}
-                                    Date : <input type="date" id="end_at" class="form-control" name="end_at" value="{{ old('end_at') }}" required autofocus>
-                                    @if ($errors->has('end_at'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('end_at') }}</strong>
-                                        </span>
-                                    @endif
                                     {{-- time --}}
-                                    Heure : <input type="text" id="end_at_time" class="form-control" name="end_at_time" value="{{ old('end_at_time') }}" required autofocus>
+                                    Heure* : <input type="text" id="end_at_time" class="form-control" name="end_at_time" value="{{ old('end_at_time') }}" required autofocus>
                                     @if ($errors->has('end_at_time'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('end_at_time') }}</strong>
@@ -80,7 +78,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('unit') ? ' has-error' : '' }} row">
-                                <label for="unit" class="col-md-4 control-label col-lg-4 col-form-label">UE</label>
+                                <label for="unit" class="col-md-4 control-label col-lg-4 col-form-label">UE*</label>
                                 <div class="col-md-12">
                                     <select name="unit" class="form-control{{ $errors->has('unit') ? ' is-invalid' : '' }}">
                                         @foreach($units as $unit)
@@ -93,6 +91,10 @@
                                     </span>
                                     @endif
                                     </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <p style="margin: auto;">* : champs obligatoires.</p>
                             </div>
 
                             <div class="form-group row">

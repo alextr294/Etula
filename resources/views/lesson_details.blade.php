@@ -9,57 +9,59 @@
                 </div>
                 <br>
                 <div class="time-ue">
-                    <h3>Début : {{$lesson->begin_at}}</h3>
-                    <h3>Fin : {{$lesson->end_at}}</h3>
+                    <h3>Début : <span style="color: green;">{{$lesson->begin_at}}</span></h3>
+                    <h3>Fin : <span style="color: red;">{{$lesson->end_at}}</span></h3>
                 </div>
                 <br>
                 <h3>Responsable : {{$lesson->owner->user->name}}</h3>
                 <br>
-                <div class="alternants-table">
-                    <h4>Alternants</h4>
-                    <form action="{{ route('students_validate')}}" method="POST">
-                        {{ csrf_field() }}
+                @if(Auth::user()->id == $lesson->teacher_id)
+                    <div class="alternants-table">
+                        <h4>Alternants</h4>
+                        <form action="{{ route('students_validate')}}" method="POST">
+                            {{ csrf_field() }}
 
-                        <div class="tbl-header teacher-header">
-                            <table class="seance-tbl" cellpadding="0" cellspacing="0" border="0">
-                                <thead>
-                                <tr>
-                                    <th>Alternant</th>
-                                    <th>Pr&eacute;sence</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
+                            <div class="tbl-header teacher-header">
+                                <table class="seance-tbl" cellpadding="0" cellspacing="0" border="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Alternant</th>
+                                        <th>Pr&eacute;sence</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
 
-                        <div class="tbl-content teacher-content">
-                            <table class="seance-tbl table table-striped" cellpadding="0" cellspacing="0" border="0">
-                                <tbody>
+                            <div class="tbl-content teacher-content">
+                                <table class="seance-tbl table table-striped" cellpadding="0" cellspacing="0"
+                                       border="0">
+                                    <tbody>
                                     @foreach($students as $student)
                                         <tr>
-                                            <th>{{$student[0][0]->name}}</th>
+                                            <th>{{$student[0]->name}}</th>
                                             <th>
                                                 @if($student[1])
-                                                    <input type="checkbox" id="student<?php echo $student[0][0]->id?>" name="student<?php echo $student[0][0]->id?>" checked>
+                                                    <input type="checkbox" id="student<?php echo $student[0]->id?>"
+                                                           name="student<?php echo $student[0]->id?>" checked>
                                                 @else
-                                                    <input type="checkbox" id="student<?php echo $student[0][0]->id?>" name="student<?php echo $student[0][0]->id?>">
+                                                    <input type="checkbox" id="student<?php echo $student[0]->id?>"
+                                                           name="student<?php echo $student[0]->id?>">
                                                 @endif
                                             </th>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        <input id="lesson_id" name="lesson_id" type="hidden" value="{{$lesson->id}}">
-                        <br>
-                        <button id="validate-students" class="btn btn-primary float-right" type="submit">Valider</button>
-                    </form>
-                </div>
-
-                <br>
-                <br>
-
-                @if(Auth::user()->id == $lesson->teacher_id)
+                            <input id="lesson_id" name="lesson_id" type="hidden" value="{{$lesson->id}}">
+                            <br>
+                            <button id="validate-students" class="btn btn-primary float-right" type="submit">Valider
+                            </button>
+                        </form>
+                    </div>
+                    <br>
+                    <br>
                     <div class="enseignants-table">
                         <h4>Enseignants</h4>
 
@@ -78,14 +80,24 @@
                             </div>
 
                             <div class="tbl-content teacher-content">
-                                <table class="seance-tbl table table-striped" cellpadding="0" cellspacing="0" border="0">
+                                <table class="seance-tbl table table-striped" cellpadding="0" cellspacing="0"
+                                       border="0">
                                     <tbody>
                                     @foreach($teachers as $teacher)
                                         <tr>
-                                            <th>{{$teacher->name}}</th>
+                                            <th>{{$teacher[0]->name}}</th>
                                             <th>
-                                                @if( $teacher->id != $lesson->teacher_id )
-                                                    <input type="checkbox" id="{{$teacher->id}}" name="list{{$teacher->id}}" value="{{$teacher->id}}">
+                                                @if( $teacher[0]->id != $lesson->teacher_id )
+                                                    @if($teacher[1])
+                                                        <input type="checkbox" id="student<?php echo $teacher[0]->id?>"
+                                                               name="teacher<?php echo $teacher[0]->id?>"
+                                                               value="{{$teacher[0]->id}}"
+                                                               checked>
+                                                    @else
+                                                        <input type="checkbox" id="student<?php echo $teacher[0]->id?>"
+                                                               name="teacher<?php echo $teacher[0]->id?>"
+                                                               value="{{$teacher[0]->id}}">
+                                                    @endif
                                                 @endif
                                             </th>
                                         </tr>
@@ -95,7 +107,9 @@
                             </div>
                             <input type="hidden" name="lesson_id" value="{{$lesson->id}}">
                             <br>
-                            <button id="add-teacher" class="btn btn-primary float-right" type="submit">Ajouter des enseignants</button>
+                            <button id="add-teacher" class="btn btn-primary float-right" type="submit">Ajouter des
+                                enseignants
+                            </button>
                         </form>
                     </div>
                 @endif
