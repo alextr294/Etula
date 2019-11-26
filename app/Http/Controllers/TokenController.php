@@ -10,7 +10,11 @@ use Étula\LessonTeacher;
 
 class TokenController extends Controller
 {
-    public function create($id){
+    public function create(Request $request, $id){
+        if($request->user()->type != "teacher") {
+            abort(403, "Unauthorized");
+        }
+        
         $token = new LessonToken;
         $token->lesson_id = $id;
 
