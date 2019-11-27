@@ -121,4 +121,4 @@ Et voilà, le tour est joué ! Vous devriez avoir accès au projet. Maintenant, 
 
 ### Mise en production
 
-La mise en production du projet se trouve [ici](192.168.74.219). 
+La mise en production du projet se trouve [ici](http://192.168.74.219). 
