@@ -93,7 +93,12 @@ php artisan db:seed
 ```
 
 ### Lancer des tests
-TODO
+
+Pour lancer les tests il suffit de faire à la racine du projet :
+ 
+```
+vendor/bin/phpunit
+```
 
 ### Allumer le serveur
 
@@ -112,3 +117,7 @@ npm run dev
 Cela va regénérer les fichiers css et js accessibles aux utilisateurs (public) à partir du dossier de développement frontend (resources).
 
 Et voilà, le tour est joué ! Vous devriez avoir accès au projet. Maintenant, lisez bien les commentaires dans le code ! Ils vous aideront à mieux comprendre.
+
+### Mise en production
+
+La mise en production du projet se trouve [ici](192.168.74.219). 
