@@ -1,7 +1,8 @@
 # ScanEtu
 
 ## Présentation du projet
-TODO
+Nous avons remarqué que la gestion de la présence des alternants était difficile. En effet, actuellement les alternants doivent faire signer une feuille de présence aux professeurs ce qui est chronophage et qui pose des problèmes physiques.
+Ensuite les alternants doivent faire remonter la feuille à l'administration. Tout ce processus est très laborieux. Nous avons donc choisis de créer une application web simplifiant grandement la gestion des alternants, Étula.
 
 ## Dépendances
 
